@@ -755,9 +755,36 @@ function submitAndShowResults() {
   var name = document.getElementById('cap-name').value.trim();
   var email = document.getElementById('cap-email').value.trim();
 
-  // Always show results regardless of email
-  // Submit to Flodesk in background if email provided
   if (email) {
+    try {
+      // Fill in the hidden Flodesk form fields
+      var fdForm = document.getElementById('fd-form-69d02d0b5f0536d5951f03c1');
+      if (fdForm) {
+        var nameField = fdForm.querySelector('input[name="firstName"], input[placeholder*="name"], input[placeholder*="Name"]');
+        var emailField = fdForm.querySelector('input[name="email"], input[type="email"]');
+        var submitBtn = fdForm.querySelector('button[type="submit"], button');
+        
+        if (nameField) {
+          nameField.value = name;
+          nameField.dispatchEvent(new Event('input', { bubbles: true }));
+          nameField.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+        if (emailField) {
+          emailField.value = email;
+          emailField.dispatchEvent(new Event('input', { bubbles: true }));
+          emailField.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+        
+        // Wait for React state to update then submit
+        setTimeout(function() {
+          if (submitBtn) submitBtn.click();
+        }, 500);
+      }
+    } catch(e) {
+      console.log('Flodesk error:', e);
+    }
+
+    // Also try direct API as backup
     var segmentMap = {
       quediran: '69d07b5b4a086815315a42e1',
       bajale: '69d07e86808a53aa46a4a2c7',
@@ -767,20 +794,25 @@ function submitAndShowResults() {
       madre: '69d07f5ca5aa26637485ea45'
     };
     var segment = segmentMap[primaryResult] || '69d07b5b4a086815315a42e1';
-    try {
-      fetch('https://assets.flodesk.com/form-api/v1/embed/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          formId: '69d02d0b5f0536d5951f03c1',
-          fields: { firstName: name, email: email },
-          segmentIds: [segment]
-        })
-      }).catch(function() {});
-    } catch(e) {}
+    
+    fetch('https://assets.flodesk.com/form-api/v1/embed/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        formId: '69d02d0b5f0536d5951f03c1',
+        fields: { firstName: name, email: email },
+        segmentIds: [segment]
+      })
+    }).then(function(r) {
+      console.log('Flodesk API status:', r.status);
+      return r.text();
+    }).then(function(t) {
+      console.log('Flodesk API response:', t);
+    }).catch(function(e) {
+      console.log('Flodesk API error:', e);
+    });
   }
 
-  // Go straight to results - no confirm screen
   showResults();
 }
 
@@ -871,7 +903,7 @@ window.addEventListener('load', function() {
 </html>
 
 <!-- Flodesk hidden form for email capture -->
-<div id="fd-form-69d02d0b5f0536d5951f03c1" style="display:none;position:absolute;"></div>
+<div id="fd-form-69d02d0b5f0536d5951f03c1" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;"></div>
 <script>
   (function(w, d, t, h, s, n) {
     w.FlodeskObject = n;
