@@ -821,7 +821,7 @@ function submitAndShowResults() {
       body: JSON.stringify({
         email: email,
         first_name: name,
-        segments: [segmentId]
+        segment_ids: [segmentId]
       })
     }).then(function(r) {
       console.log('Flodesk API status:', r.status);
