@@ -758,7 +758,7 @@ function submitAndShowResults() {
   if (email) {
     try {
       // Fill in the hidden Flodesk form fields
-      var fdForm = document.getElementById('fd-form-69d02d0b5f0536d5951f03c1');
+      var fdForm = document.getElementById('fd-form-69d18ea9808a53aa46a4a7e4');
       if (fdForm) {
         var nameField = fdForm.querySelector('input[name="firstName"], input[placeholder*="name"], input[placeholder*="Name"]');
         var emailField = fdForm.querySelector('input[name="email"], input[type="email"]');
@@ -796,7 +796,7 @@ function submitAndShowResults() {
     var segment = segmentMap[primaryResult] || '69d07b5b4a086815315a42e1';
     
     // Submit to Flodesk using their form submission endpoint
-    var fdForm = document.getElementById('fd-form-69d02d0b5f0536d5951f03c1');
+    var fdForm = document.getElementById('fd-form-69d18ea9808a53aa46a4a7e4');
     if (fdForm) {
       setTimeout(function() {
         var allInputs = fdForm.querySelectorAll('input');
@@ -922,7 +922,7 @@ window.addEventListener('load', function() {
 </html>
 
 <!-- Flodesk hidden form for email capture -->
-<div id="fd-form-69d02d0b5f0536d5951f03c1" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;"></div>
+<div id="fd-form-69d18ea9808a53aa46a4a7e4" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;"></div>
 <script>
   (function(w, d, t, h, s, n) {
     w.FlodeskObject = n;
@@ -946,8 +946,8 @@ window.addEventListener('load', function() {
 </script>
 <script>
   window.fd('form', {
-    formId: '69d02d0b5f0536d5951f03c1',
-    containerEl: '#fd-form-69d02d0b5f0536d5951f03c1'
+    formId: '69d18ea9808a53aa46a4a7e4',
+    containerEl: '#fd-form-69d18ea9808a53aa46a4a7e4'
   });
 </script>
 </body>
