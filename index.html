@@ -795,22 +795,23 @@ function submitAndShowResults() {
     };
     var segment = segmentMap[primaryResult] || '69d07b5b4a086815315a42e1';
     
-    fetch('https://assets.flodesk.com/form-api/v1/embed/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        formId: '69d02d0b5f0536d5951f03c1',
-        fields: { firstName: name, email: email },
-        segmentIds: [segment]
-      })
-    }).then(function(r) {
-      console.log('Flodesk API status:', r.status);
-      return r.text();
-    }).then(function(t) {
-      console.log('Flodesk API response:', t);
-    }).catch(function(e) {
-      console.log('Flodesk API error:', e);
-    });
+    // Submit via hidden Flodesk form (native submission)
+    var fdForm = document.getElementById('fd-form-69d02d0b5f0536d5951f03c1');
+    if (fdForm) {
+      setTimeout(function() {
+        var nameField = fdForm.querySelector('input[name="firstName"], input[type="text"]');
+        var emailField = fdForm.querySelector('input[name="email"], input[type="email"]');
+        var submitBtn = fdForm.querySelector('button[type="submit"], button');
+        console.log('Flodesk form found. Fields:', !!nameField, !!emailField, !!submitBtn);
+        if (nameField) { nameField.value = name; nameField.dispatchEvent(new Event('input', {bubbles:true})); nameField.dispatchEvent(new Event('change', {bubbles:true})); }
+        if (emailField) { emailField.value = email; emailField.dispatchEvent(new Event('input', {bubbles:true})); emailField.dispatchEvent(new Event('change', {bubbles:true})); }
+        setTimeout(function() {
+          if (submitBtn) { submitBtn.click(); console.log('Flodesk form submitted!'); }
+        }, 800);
+      }, 1000);
+    } else {
+      console.log('Flodesk form not found in DOM');
+    }
   }
 
   showResults();
