@@ -795,22 +795,40 @@ function submitAndShowResults() {
     };
     var segment = segmentMap[primaryResult] || '69d07b5b4a086815315a42e1';
     
-    // Submit via hidden Flodesk form (native submission)
+    // Submit to Flodesk using their form submission endpoint
     var fdForm = document.getElementById('fd-form-69d02d0b5f0536d5951f03c1');
     if (fdForm) {
       setTimeout(function() {
-        var nameField = fdForm.querySelector('input[name="firstName"], input[type="text"]');
-        var emailField = fdForm.querySelector('input[name="email"], input[type="email"]');
+        var allInputs = fdForm.querySelectorAll('input');
+        var nameField = null;
+        var emailField = null;
+        allInputs.forEach(function(inp) {
+          if (inp.type === 'email') emailField = inp;
+          else if (inp.type === 'text') nameField = inp;
+        });
         var submitBtn = fdForm.querySelector('button[type="submit"], button');
         console.log('Flodesk form found. Fields:', !!nameField, !!emailField, !!submitBtn);
-        if (nameField) { nameField.value = name; nameField.dispatchEvent(new Event('input', {bubbles:true})); nameField.dispatchEvent(new Event('change', {bubbles:true})); }
-        if (emailField) { emailField.value = email; emailField.dispatchEvent(new Event('input', {bubbles:true})); emailField.dispatchEvent(new Event('change', {bubbles:true})); }
-        setTimeout(function() {
-          if (submitBtn) { submitBtn.click(); console.log('Flodesk form submitted!'); }
-        }, 800);
-      }, 1000);
+        console.log('All inputs:', allInputs.length);
+        
+        if (emailField) {
+          var nativeInputSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+          if (nameField && name) {
+            nativeInputSetter.call(nameField, name);
+            nameField.dispatchEvent(new Event('input', {bubbles:true}));
+          }
+          nativeInputSetter.call(emailField, email);
+          emailField.dispatchEvent(new Event('input', {bubbles:true}));
+          
+          setTimeout(function() {
+            if (submitBtn) { 
+              submitBtn.click(); 
+              console.log('Flodesk submitted!'); 
+            }
+          }, 1000);
+        }
+      }, 1500);
     } else {
-      console.log('Flodesk form not found in DOM');
+      console.log('Flodesk form not found');
     }
   }
 
