@@ -808,41 +808,29 @@ function submitAndShowResults() {
     };
     var segment = segmentMap[primaryResult] || '69d07b5b4a086815315a42e1';
     
-    // Submit to Flodesk using their form submission endpoint
-    var fdForm = document.getElementById('fd-form-69d18ea9808a53aa46a4a7e4');
-    if (fdForm) {
-      setTimeout(function() {
-        var allInputs = fdForm.querySelectorAll('input');
-        var nameField = null;
-        var emailField = null;
-        allInputs.forEach(function(inp) {
-          if (inp.type === 'email') emailField = inp;
-          else if (inp.type === 'text') nameField = inp;
-        });
-        var submitBtn = fdForm.querySelector('button[type="submit"], button');
-        console.log('Flodesk form found. Fields:', !!nameField, !!emailField, !!submitBtn);
-        console.log('All inputs:', allInputs.length);
-        
-        if (emailField) {
-          var nativeInputSetter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
-          if (nameField && name) {
-            nativeInputSetter.call(nameField, name);
-            nameField.dispatchEvent(new Event('input', {bubbles:true}));
-          }
-          nativeInputSetter.call(emailField, email);
-          emailField.dispatchEvent(new Event('input', {bubbles:true}));
-          
-          setTimeout(function() {
-            if (submitBtn) { 
-              submitBtn.click(); 
-              console.log('Flodesk submitted!'); 
-            }
-          }, 1000);
-        }
-      }, 1500);
-    } else {
-      console.log('Flodesk form not found');
-    }
+    // Submit to Flodesk via REST API with authentication
+    var segmentId = segment;
+    var apiKey = 'fd_key_af97bfc953a84af3ba3f6fa80f155630.W1rAx5Q8ddBTzWuMQQJK5ILbz9fqKaGIEB2OzmyduIAZuLwsaXkoSc4kSf8ZqPPdMu4IvpUHlQVHbJ2DfMrFwQVfZjjHRs4a6WTg6CtBnXoSBQCevoptRJhOVjd4lgw9S9mCS5SvzP8btSqfqY4IzC3ZsQOpmnCbeOdsnjPjYNs3tysWx7jUgB6EqHTScNpk';
+    
+    fetch('https://api.flodesk.com/v1/subscribers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + btoa(apiKey + ':')
+      },
+      body: JSON.stringify({
+        email: email,
+        first_name: name,
+        segments: [segmentId]
+      })
+    }).then(function(r) {
+      console.log('Flodesk API status:', r.status);
+      return r.json();
+    }).then(function(data) {
+      console.log('Flodesk response:', JSON.stringify(data));
+    }).catch(function(e) {
+      console.log('Flodesk error:', e);
+    });
   }
 
   showResults();
