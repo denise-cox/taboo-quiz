@@ -423,8 +423,14 @@
   <!-- INTRO SCREEN -->
   <div id="screen-intro" class="screen active" style="display:block;">
     <div class="badge">Free quiz</div>
-    <h1>Which cultural taboo is running your life?</h1>
-    <p class="intro-sub">You already know the rules. Bájale dos rayitas. De eso no se habla. Los trapos sucios se lavan en casa. You’ve lived by them your whole life. And they have cost you more than you know. This quiz reveals the one that’s been running you, shaping your experience, before you even knew it had a hold on you.</p>
+    <h1>Which cultural rule has been running your life? <span style="font-size:0.7em; font-weight:400; color:#993556;">(Don't worry, it's not your fault.)</span></h1>
+    <p class="intro-sub">You already know the rules. Bájale dos rayitas (don’t be too much). De eso no se habla (we don’t talk about that). Los trapos sucios se lavan en casa (keep the dirty laundry at home).
+
+You’ve been living by them your whole life, and honestly? You’ve been really good at it. Gold star. A+ in cultural compliance.
+
+This quiz is here to name the one that’s been running the show. Not to shame you, your tiías did enough of that already. Just to finally give it a name.
+
+10 questions. 5 minutes. Zero judgment. (Okay, maybe a little self-recognition. But the healing kind.)</p>
     <ul class="intro-list">
       <li><span class="arrow">→</span> 10 questions, 5 minutes</li>
       <li><span class="arrow">→</span> Rooted in Denise Soler Cox’s book <em>What Will They Say?</em> (Simon &amp; Schuster, 2026)</li>
@@ -535,144 +541,166 @@ const questions = [
     text: "You just got promoted. Your family's reaction is...",
     sub: "Picture the scene. What actually happens?",
     options: [
-      { text: "They’re proud, but someone in the family can’t help pointing out that you’re getting a little too big for your own good", taboo: "bajale" },
-      { text: "They ask if you'll still have time for the family", taboo: "lucha" },
-      { text: "Nobody really talks about it, big feelings aren't discussed", taboo: "deso" },
-      { text: "They worry what people will think if it doesn't work out", taboo: "quediran" }
+      { text: "You actually take a moment to celebrate and let yourself feel good. (Look at you.)", taboo: "healthy" },
+      { text: "They're proud, for about 4.5 seconds before someone says 'just don't get too big for your own good'", taboo: "bajale" },
+      { text: "They ask if you'll still have time for the family. (Spoiler: they already know the answer.)", taboo: "lucha" },
+      { text: "Nobody really talks about it. Big feelings aren't discussed. Never have been.", taboo: "deso" },
+      { text: "They worry about what people will think if it doesn't work out. The promotion isn't even a week old.", taboo: "quediran" }
     ]
   },
   {
     text: "A colleague takes credit for your idea in a meeting. You...",
-    sub: "Be honest, what do you actually do, not what you wish you did?",
+    sub: "Be honest, what do you actually do?",
     options: [
-      { text: "Say nothing. It feels wrong to make a scene over it", taboo: "trapos" },
-      { text: "Feel like you should have anticipated this, and beat yourself up", taboo: "lucha" },
-      { text: "Freeze. Asserting yourself out loud feels almost physically wrong", taboo: "bajale" },
-      { text: "Worry how speaking up will make you look to others", taboo: "quediran" }
+      { text: "Freeze. Asserting yourself out loud feels almost physically wrong.", taboo: "bajale" },
+      { text: "You speak up calmly and set the record straight. You've been practicing this. It's working.", taboo: "healthy" },
+      { text: "Say nothing. Making a scene feels worse than losing the credit. Again.", taboo: "trapos" },
+      { text: "Beat yourself up for not seeing it coming. Somehow this is your fault.", taboo: "lucha" },
+      { text: "Worry about how speaking up will make you look to everyone else in the room.", taboo: "quediran" }
     ]
   },
   {
     text: "Your therapist asks you to talk about your childhood. Your instinct is...",
     sub: "What comes up before you can think about it?",
     options: [
-      { text: "We don't air dirty laundry. Even here.", taboo: "trapos" },
-      { text: "We don't talk about certain things. Full stop.", taboo: "deso" },
-      { text: "I don't want to dishonor my mother by what I might say", taboo: "madre" },
-      { text: "Discomfort, like you're breaking an unspoken rule", taboo: "deso" }
+      { text: "We don't talk about certain things. There are whole rooms I don't enter.", taboo: "deso" },
+      { text: "We don't air dirty laundry. Even here. Even to someone I'm paying.", taboo: "trapos" },
+      { text: "You actually go there. It's uncomfortable but you know this is the work.", taboo: "healthy" },
+      { text: "Discomfort. Like you're breaking a rule nobody wrote down but everyone somehow knows.", taboo: "deso" },
+      { text: "I don't want to say anything that dishonors my mother. (Therapist waits patiently.)", taboo: "madre" }
     ]
   },
   {
-    text: "You're exhausted. You need a break. But you feel guilty because...",
-    sub: "Which of these sounds most like your inner voice?",
+    text: "You're exhausted. You need a break. What does your inner voice say?",
+    sub: "Which of these sounds most like your internal monologue?",
     options: [
-      { text: "My parents sacrificed everything. Rest feels disrespectful.", taboo: "lucha" },
-      { text: "If I slow down, people will see I'm not as strong as they think", taboo: "trapos" },
-      { text: "There's always more to prove, rest is for people who've already made it", taboo: "bajale" },
-      { text: "What will people think if I'm not always available and giving?", taboo: "quediran" }
+      { text: "What will people think if I'm not always available and giving everything?", taboo: "quediran" },
+      { text: "My parents sacrificed everything. Rest feels like betrayal.", taboo: "lucha" },
+      { text: "You actually take the break. Still working on the guilt, but you take it. Progress.", taboo: "healthy" },
+      { text: "If I slow down, people will see I'm not as strong as I've made them think.", taboo: "trapos" },
+      { text: "There's always more to prove. Rest is for people who've already made it. (Nobody has made it, by the way.)", taboo: "bajale" }
     ]
   },
   {
     text: "You're asked to give a keynote to 500 people about your expertise. You feel...",
     sub: "First feeling, before logic kicks in.",
     options: [
-      { text: "Excited, then immediately a voice says: who am I to be up there?", taboo: "bajale" },
-      { text: "Like I need to suffer for this more before I've 'earned' it", taboo: "lucha" },
-      { text: "Terrified of what happens if something goes wrong publicly", taboo: "quediran" },
-      { text: "Like I need to check with everyone else first before I say yes", taboo: "madre" }
+      { text: "Like you need to suffer for this a little more before you've actually 'earned' it.", taboo: "lucha" },
+      { text: "Terrified of what happens publicly if something goes wrong. The audience will remember.", taboo: "quediran" },
+      { text: "Excited. You've done the work. You belong on that stage. (Yes, really. Stop arguing.)", taboo: "healthy" },
+      { text: "Excited, then immediately: 'Who am I to be up there?' The imposter showed up fast.", taboo: "bajale" },
+      { text: "Like you need to check with everyone else first before you say yes. Just to be safe.", taboo: "madre" }
     ]
   },
   {
-    text: "When something is wrong at work, with your boss, a colleague, the culture, you typically...",
+    text: "Something is wrong at work, with your boss, a colleague, the culture. You typically...",
     sub: "What's your default move?",
     options: [
-      { text: "Handle it privately, never involve HR or make it a thing", taboo: "trapos" },
-      { text: "Avoid the topic entirely, some things just aren't discussed", taboo: "deso" },
-      { text: "Push through alone. Needing help feels like weakness.", taboo: "lucha" },
-      { text: "Wonder how it will reflect on you if you say something", taboo: "quediran" }
+      { text: "Push through by yourself. Needing help feels uncomfortably close to weakness.", taboo: "lucha" },
+      { text: "Actually address it. Not perfectly, but you're learning to use your voice. One meeting at a time.", taboo: "healthy" },
+      { text: "Handle it alone. Involving HR or making it a thing is simply not something you do.", taboo: "trapos" },
+      { text: "Avoid the topic entirely. Some things just aren't discussed. Nothing to see here.", taboo: "deso" },
+      { text: "Wonder how speaking up will reflect on you before you've said a single word.", taboo: "quediran" }
     ]
   },
   {
     text: "Someone asks you to describe your biggest professional accomplishment. You...",
     sub: "What does your body do before you answer?",
     options: [
-      { text: "Immediately start crediting the team, downplaying your role", taboo: "bajale" },
-      { text: "Feel a flash of guilt, like bragging is betraying something", taboo: "madre" },
-      { text: "Pivot to how hard it was. The struggle is the story.", taboo: "lucha" },
-      { text: "Check whether the person asking will think you're showing off", taboo: "quediran" }
+      { text: "Check whether the person asking will think you're showing off. (They won't. But still.)", taboo: "quediran" },
+      { text: "Feel a flash of guilt, like bragging is betraying something sacred about humility.", taboo: "madre" },
+      { text: "Immediately start crediting the team. Mentioning yourself specifically feels wrong somehow.", taboo: "bajale" },
+      { text: "Own it. 'I did that. I'm proud of it.' Still working on saying it without apologizing first, but getting there.", taboo: "healthy" },
+      { text: "Pivot to how hard it was. The struggle is always the story, never the win.", taboo: "lucha" }
     ]
   },
   {
     text: "Your mother calls to say she disapproves of a major decision you've made. You...",
     sub: "The real answer, not the healthy one.",
     options: [
-      { text: "Feel crushing guilt and reconsider everything", taboo: "madre" },
-      { text: "Say nothing back. Conflict feels like betrayal.", taboo: "trapos" },
-      { text: "Wonder if she's right, maybe you're being selfish", taboo: "quediran" },
-      { text: "Feel like you're abandoning your responsibilities", taboo: "lucha" }
+      { text: "Hold your ground, with love, with guilt, but you hold it. That's growth and it counts.", taboo: "healthy" },
+      { text: "Feel the weight of every responsibility you're supposedly abandoning by doing this.", taboo: "lucha" },
+      { text: "Feel crushing guilt and spend the next three days reconsidering everything.", taboo: "madre" },
+      { text: "Wonder if she's right. Maybe you are being selfish. Maybe this was too much to ask for.", taboo: "quediran" },
+      { text: "Say nothing back. Conflict with her feels like a betrayal you can't come back from.", taboo: "trapos" }
     ]
   },
   {
     text: "You've been struggling. A trusted colleague asks if you're okay. You say...",
     sub: "Reflexively, before you choose your words.",
     options: [
-      { text: '"I\'m fine." Full stop. Nothing more.', taboo: "deso" },
-      { text: '"Yeah, just tired." You minimize it automatically.', taboo: "trapos" },
-      { text: '"I\'m managing." Because struggle is private.', taboo: "lucha" },
-      { text: '"Of course!" Because what would they think if you weren\'t?', taboo: "quediran" }
+      { text: "'I'm managing.' Because struggle is private and always has been.", taboo: "lucha" },
+      { text: "'Of course!' Because what would they think if you weren't? Can't let that show.", taboo: "quediran" },
+      { text: "'Yeah, just tired.' You minimized it before you even finished the sentence.", taboo: "trapos" },
+      { text: "A little of the truth, actually. It felt terrifying. You did it anyway. That's new.", taboo: "healthy" },
+      { text: "'I'm fine.' Full stop. Subject change incoming in three, two, one.", taboo: "deso" }
     ]
   },
   {
-    text: "At your most honest, what's the sentence you've heard most inside your own head?",
+    text: "At your most honest, what's the sentence you hear most inside your own head?",
     sub: "The one that comes before you catch it.",
     options: [
-      { text: '"¿Qué van a pensar?", What will they think?', taboo: "quediran" },
-      { text: '"Bájale dos rayitas.", Don\'t be so much.', taboo: "bajale" },
-      { text: '"Los trapos sucios se lavan en casa.", Keep it private.', taboo: "trapos" },
-      { text: '"De eso no se habla.", That\'s not something we discuss.', taboo: "deso" }
+      { text: "'De eso no se habla.' That's not something we discuss. Moving on.", taboo: "deso" },
+      { text: "'Que van a pensar?' What will people think? The question that never clocks out.", taboo: "quediran" },
+      { text: "Truth is, it's getting quieter. You're doing the work and it's starting to show.", taboo: "healthy" },
+      { text: "'Los trapos sucios se lavan en casa.' Keep it private. Handle it yourself.", taboo: "trapos" },
+      { text: "'Bajale dos rayitas.' Don't be so much. Said with love. Still did damage.", taboo: "bajale" }
     ]
   }
-];
+]
 
 const taboos = {
   quediran: {
     phrase: "¿Qué dirán?",
     name: "The fear of what others will say",
-    desc: "You've been making decisions with an invisible audience in your head for so long, you don't even notice anymore. Their imagined judgment shapes your choices before you're aware you're making one.",
+    desc: "Ah. The invisible audience. They have excellent seats and terrible opinions.
+
+You've been making decisions with them in your head for so long, you don't even notice anymore. Their imagined judgment shapes your choices before you're aware you're making one.",
     patterns: ["You edit yourself in meetings before you even speak", "Other people's opinions feel more real than your own", "Success feels dangerous, it raises the stakes of being watched"],
     next: "Start noticing the question 'what will they think?' before you act on it. You don't need to stop asking it. You need to hear it, name it, and then ask: what do I actually think? Chapter 1 of What Will They Say? is your next step."
   },
   bajale: {
     phrase: "¡Bájale dos rayitas!",
     name: "The compulsion to shrink",
-    desc: "You were told, directly or indirectly, that your intensity, your ambition, your presence was too much. So you learned to make yourself smaller. Now it's automatic, and it's costing you.",
+    desc: "Someone actually said this to you like it was helpful. It was not.
+
+You were told, directly or indirectly, that your intensity, your ambition, your presence was too much. So you learned to make yourself smaller. Now it's automatic, and it's costing you.",
     patterns: ["You credit the team when the win was yours", "You preface your opinions with apologies", "You feel guilty when you take up space or make a big claim"],
     next: "The work isn't to become louder. It's to stop apologizing for your size. Practice claiming one thing per week, one win, one opinion, one boundary, without softening it first. Chapter 4 of What Will They Say? breaks down exactly why this rule was installed, and how to uninstall it."
   },
   trapos: {
     phrase: "Los trapos sucios se lavan en casa",
     name: "The code of private suffering",
-    desc: "Loyalty meant silence. Strength meant handling it alone. You learned early that sharing what's wrong, at work, in your family, inside yourself, was a form of betrayal. So you've been carrying it all.",
+    desc: "The original silent sufferer. That's you.
+
+Loyalty meant silence. Strength meant handling it alone. You learned early that sharing what's wrong, at work, in your family, inside yourself, was a form of betrayal. So you've been carrying it all.",
     patterns: ["You never take problems to HR or leadership, ever", "You minimize your struggles, even with people you trust", "You feel relief when things look fine from the outside, even when they aren't"],
     next: "The silence was a survival strategy, honor it for what it was. And then start questioning one small thing: who would it actually hurt if you told the truth about this? Chapter 1 of What Will They Say? starts here."
   },
   deso: {
     phrase: "De eso no se habla",
     name: "The unspoken rule of forbidden topics",
-    desc: "Some things were simply not discussed. Mental health, trauma, dysfunction, desire, there was an entire map of forbidden territory in your house. You learned to navigate around it so well that now you can barely find the words for what's inside you.",
+    desc: "There are whole rooms in your inner world with the lights off and the door closed.
+
+Some things were simply not discussed. Mental health, trauma, dysfunction, desire, there was an entire map of forbidden territory in your house. You learned to navigate around it so well that now you can barely find the words for what's inside you.",
     patterns: ["You have feelings you can't name because there were no words for them growing up", "Therapy or emotional conversations feel almost physically uncomfortable", "You change the subject instinctively when things get too real"],
     next: "The first act of freedom is just finding language. Name one thing this week, out loud, to someone safe, that has never been named before. Chapter 2 of What Will They Say? is your companion for this."
   },
   lucha: {
     phrase: "La lucha sigue",
     name: "The belief that struggle is the only proof of worth",
-    desc: "Your people suffered to give you what you have. So ease feels dangerous, like betrayal, like you haven't paid enough yet. You grind not just because you have to, but because resting feels morally wrong.",
+    desc: "Rest? In this familia? In this economy?
+
+Your people suffered to give you what you have. So ease feels dangerous, like betrayal, like you haven't paid enough yet. You grind not just because you have to, but because resting feels morally wrong.",
     patterns: ["You feel guilty when things go well without a fight", "You use how hard something was as evidence you deserved it", "Rest, joy, and ease trigger shame more than satisfaction"],
     next: "Your inheritance is the sacrifice. It is not the suffering. Chapter 9 of What Will They Say? is specifically about dismantling the belief that struggle is the price of belonging."
   },
   madre: {
     phrase: "Don't dishonor your mother",
     name: "The weight of unconditional loyalty",
-    desc: "Your love for your family, especially your mother, has been one of your greatest strengths. And one of your most invisible constraints. You've learned to read the room, keep the peace, and never do anything that reflects badly on where you came from.",
+    desc: "You have her eyes, her cooking, and apparently her veto power over your major life decisions.
+
+Your love for your family, especially your mother, has been one of your greatest strengths. And one of your most invisible constraints. You've learned to read the room, keep the peace, and never do anything that reflects badly on where you came from.",
     patterns: ["You loop family opinion into major decisions automatically", "Disappointing her feels like an identity crisis, not just a disagreement", "You confuse loyalty with self-erasure"],
     next: "Loving your mother and building your own life are not mutually exclusive, even when it feels that way. Chapter 6 of What Will They Say? is the one readers call the hardest to read, and the most necessary."
   }
@@ -762,7 +790,7 @@ function prevQuestion() {
 function calculateScores() {
   scores = { quediran:0, bajale:0, trapos:0, deso:0, lucha:0, madre:0 };
   questions.forEach((q, qi) => {
-    if (answers[qi] !== null) scores[q.options[answers[qi]].taboo]++;
+    if (answers[qi] !== null) var t = q.options[answers[qi]].taboo; if (t !== 'healthy') scores[t]++;
   });
   primaryResult = Object.keys(scores).reduce((a,b) => scores[a] >= scores[b] ? a : b);
 }
