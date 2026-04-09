@@ -423,7 +423,650 @@
   <!-- INTRO SCREEN -->
   <div id="screen-intro" class="screen active" style="display:block;">
     <div class="badge">Free quiz</div>
-    <h1>Which cultural rule has been running your life? <span style="font-size:0.7em; font-weight:400; color:#993556;">(Don't worry, it's not your fault.)</span></h1>
+    <h1>Títí me preguntó... and now so will this quiz.</h1>
+    <p class="intro-sub">You already know the rules.<br><br>Bájale dos rayitas (don’t be too much). De eso no se habla (we don’t talk about that). Los trapos sucios se lavan en casa (keep the dirty laundry at home).<br><br>You didn’t choose them. You didn’t sign anything. But somewhere between the kitchen table and the boardroom, they became the operating system running your entire life. You’ve been living by them so long you’ve mistaken them for personality traits.<br><br>Gold star. A+ in cultural compliance.<br><br>The cultural rules you grew up with had one job: keep you in line. This quiz has a different job: set you free.<br><br>Consider it the conversation your cultura never knew how to start.<br><br>10 questions. 5 minutes. Zero judgment. (Okay, maybe a little self-recognition. But the healing kind. We promise.)</p>
+    <ul class="intro-list">
+      <li><span class="arrow">→</span> 10 questions, 5 minutes</li>
+      <li><span class="arrow">→</span> Rooted in Denise Soler Cox’s book <em>What Will They Say?</em> (Simon &amp; Schuster, 2026)</li>
+      <li><span class="arrow">→</span> Your result includes how this taboo shows up in your life and what to do next</li>
+      <li><span class="arrow">→</span> Designed for first-gen Latinas ready to stop being managed by rules they didn't choose</li>
+    </ul>
+    <button class="btn-primary" onclick="startQuiz()">I’m ready. Let’s go. →</button>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="screen-quiz" class="screen" style="display:none;">
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+    <div class="q-label" id="q-counter">Question 1 of 10</div>
+    <div class="q-text" id="q-text"></div>
+    <div class="q-sub" id="q-sub"></div>
+    <div class="options" id="options-container"></div>
+    <button class="btn-primary" id="next-btn" disabled onclick="nextQuestion()">Next →</button>
+    <button class="btn-secondary" id="back-btn" onclick="prevQuestion()" style="display:none;">← Back</button>
+  </div>
+
+  <!-- CAPTURE SCREEN -->
+  <div<div id="screen-capture" class="screen" style="display:none;">
+    <div class="q-label">Almost there</div>
+    <p class="capture-title">Where should we send your full taboo profile?</p>
+    <p class="capture-sub">Enter your name and email to unlock your complete results. You’ll also get a copy of the introduction to <em>What Will They Say?</em> sent straight to your inbox, the chapter that started it all.</p>
+    <input type="text" id="cap-name" placeholder="Your first name" />
+    <input type="email" id="cap-email" placeholder="Your email address" />
+    <button class="btn-primary" onclick="submitAndShowResults()">Show my results →</button>
+    <p class="privacy-note">No spam. Ever. Unsubscribe anytime.</p>
+    <div style="background:#FBEAF0; border-radius:10px; padding:12px 16px; margin-top:14px; font-size:13px; color:#72243E; line-height:1.6; text-align:center;">
+      📬 <strong>Check your inbox!</strong> If you don't see our email within a few minutes, check your spam folder and mark it as <strong>not spam</strong> so you don't miss a thing.
+    </div>
+  </div>
+
+  <!-- EMAIL CONFIRM SCREEN -->
+  <div id="screen-confirm" class="screen" style="display:none;">
+    <div class="result-hero" style="text-align:center; margin-bottom:1.5rem;">
+      <div class="result-eyebrow">You’re in</div>
+      <div class="result-name" style="font-size:22px; margin-bottom:0.75rem;">Check your inbox</div>
+      <div class="result-desc">We just sent your full taboo profile plus the introduction to <em>What Will They Say?</em> to your email. If you don’t see it within a few minutes, check your spam folder and move it to your inbox so you don’t miss a thing.</div>
+    </div>
+    <button class="btn-primary" onclick="showResults()">See my results now →</button>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div id="screen-results" class="screen" style="display:none;">
+    <div class="result-hero">
+      <div class="result-eyebrow">Your primary taboo</div>
+      <div class="result-taboo-phrase" id="res-taboo-phrase"></div>
+      <div class="result-name" id="res-name"></div>
+      <div class="result-desc" id="res-desc"></div>
+    </div>
+
+    <div class="result-section">
+      <h3>How this shows up in your life</h3>
+      <div id="res-patterns"></div>
+    </div>
+
+    <div class="result-section">
+      <h3>Your full taboo profile</h3>
+      <div id="res-score-bars"></div>
+    </div>
+
+    <div class="all-ten-callout">
+      This quiz reveals your primary taboo, but there are <em>10 cultural rules</em> that may be running your life, your leadership, and your relationships. All ten are named, traced, and broken open in <em>What Will They Say?</em>, and some of the ones you didn't score highest on might surprise you most.
+    </div>
+
+    <div class="book-callout">
+      <img src="https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781668082966/what-will-they-say-9781668082966_hr.jpg" style="width:58px; height:78px; border-radius:6px; flex-shrink:0; object-fit:cover;" alt="What Will They Say? by Denise Soler Cox" />
+      <div class="book-text">
+        <h4>Read all 10 taboos in the book</h4>
+        <p>Denise Soler Cox’s debut, <em>What Will They Say?</em> (Simon &amp; Schuster, 2026), names all ten inherited cultural rules and traces exactly how they show up in your career, your relationships, and your body.</p>
+      </div>
+    </div>
+
+    <div class="result-section">
+      <h3>Your next step</h3>
+      <div class="next-card" id="res-next"></div>
+    </div>
+
+    <div class="share-row">
+      <button class="btn-primary" onclick="shareResult()">Share your result</button>
+      <button class="btn-secondary" onclick="retakeQuiz()">Retake quiz</button>
+    </div>
+    <p class="tag-note" style="margin-bottom:1.5rem;">Tag <strong>@denisesolercox</strong> with your result</p>
+
+    <div style="background:#FBEAF0; border-radius:14px; padding:1.5rem; text-align:center; border:1px solid #f5d0df; margin-bottom:1.25rem;">
+      <div style="font-size:11px; color:#993556; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-bottom:0.5rem;">Pre-order the book</div>
+      <div style="font-size:18px; font-weight:600; color:#3d0f1e; line-height:1.3; margin-bottom:0.75rem;">Ready to break free from all 10 taboos?</div>
+      <div style="font-size:14px; color:#72243E; line-height:1.7; margin-bottom:1.25rem;">You just found your primary one. The other nine are waiting in <em>What Will They Say?</em>, and some of them will surprise you even more.</div>
+      <a href="https://www.simonandschuster.com/books/What-Will-They-Say/Denise-Soler-Cox/9781668082966" target="_blank" style="display:block; background:#D4537E; color:white; border-radius:12px; padding:15px 28px; font-size:16px; font-weight:600; text-decoration:none; margin-bottom:8px;">Pre-order What Will They Say? →</a>
+      <p style="font-size:12px; color:#993556;">Simon &amp; Schuster · August 18, 2026</p>
+    </div>
+
+    <div style="background:#fdf9f7; border:1px solid #f0e8ec; border-radius:12px; padding:1.25rem; text-align:center;">
+      <div style="font-size:14px; color:#555; line-height:1.6; margin-bottom:12px;">Know a Latina who needs to see this? Send her the quiz.</div>
+      <button class="btn-primary" onclick="shareQuiz()">Send the quiz to a friend</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const questions = [
+  {
+    text: "You just got promoted. Your family's reaction is...",
+    sub: "Your tia is already nervous for you. What actually happens?",
+    options: [
+      { text: "You let yourself feel proud. Like actually proud. You sit with it for a whole day. (Look at you.)", taboo: "healthy" },
+      { text: "They celebrate, then someone says 'just don't get too big for your britches.' They meant it as love. You heard it as a warning.", taboo: "bajale" },
+      { text: "Before you finish the sentence, someone asks if you'll still make it to Sunday dinner. The guilt arrives before the congratulations.", taboo: "lucha" },
+      { text: "Nobody really says much. Big feelings don't get a lot of airtime in your family. You've learned to celebrate alone.", taboo: "deso" },
+      { text: "The first thing out of someone's mouth is 'but what if it doesn't work out?' The promotion is three days old.", taboo: "quediran" }
+    ]
+  },
+  {
+    text: "A colleague takes credit for your idea in a meeting. You...",
+    sub: "Be honest. What do you actually do, not what you wish you did.",
+    options: [
+      { text: "Your mouth opens. Something stops it. You'll claim it later. (You won't claim it later.)", taboo: "bajale" },
+      { text: "You speak up, calmly and clearly. You've been practicing this. It's starting to work.", taboo: "healthy" },
+      { text: "You handle it privately afterward. One on one. No scenes. No witnesses.", taboo: "trapos" },
+      { text: "You spend the rest of the day figuring out how YOU let this happen. Clearly you should have worked harder, been more visible, done more.", taboo: "lucha" },
+      { text: "You say nothing, but spend the next hour calculating exactly how speaking up would have looked to everyone in that room.", taboo: "quediran" }
+    ]
+  },
+  {
+    text: "Your therapist asks you to talk about your childhood. Your instinct is...",
+    sub: "Your tia would like you to know she did not authorize this appointment.",
+    options: [
+      { text: "There are chapters of your history you don't have language for. Nobody ever gave you the words.", taboo: "deso" },
+      { text: "We don't air family business. Even here. Even to someone you're paying $200 an hour.", taboo: "trapos" },
+      { text: "You go there. It's uncomfortable and necessary and you do it anyway.", taboo: "healthy" },
+      { text: "You'd rather protect everyone's reputation than access your own story. You edit as you go.", taboo: "madre" },
+      { text: "You go, but spend half the session making sure your therapist doesn't think badly of your family.", taboo: "quediran" }
+    ]
+  },
+  {
+    text: "You're exhausted and you need a break. What does your inner voice say?",
+    sub: "Which of these sounds most like your internal monologue?",
+    options: [
+      { text: "You take the break. The guilt shows up right on time. You take it anyway.", taboo: "healthy" },
+      { text: "Rest feels like disrespecting everything your parents sacrificed. So you push through. Again.", taboo: "lucha" },
+      { text: "You don't tell anyone you're struggling. You manage it alone, on the inside, where nobody can see.", taboo: "trapos" },
+      { text: "You haven't earned the right to rest yet. There's still more to prove. Maybe after the next thing.", taboo: "bajale" },
+      { text: "You wonder what your team will think if you're not available and responsive. You answer the Slack message.", taboo: "quediran" }
+    ]
+  },
+  {
+    text: "You're asked to give a keynote to 500 people about your expertise. You feel...",
+    sub: "First feeling, before logic kicks in.",
+    options: [
+      { text: "Excited. You've done the work and you know it. This is yours.", taboo: "healthy" },
+      { text: "Like you need to suffer a little more first. A few more hard years before you've really earned it.", taboo: "lucha" },
+      { text: "Immediately terrified of what 500 people will think if something goes wrong. You can already see their faces.", taboo: "quediran" },
+      { text: "'Who am I to be up there?' shows up before you've even said yes. Loud and uninvited.", taboo: "bajale" },
+      { text: "You want to say yes, but first you need to check with a few people in your life. Just to make sure it's okay.", taboo: "madre" }
+    ]
+  },
+  {
+    text: "Something is wrong at work, with your boss, a colleague, the culture. Your default move is...",
+    sub: "Your tia wants to know why you can't just handle it yourself.",
+    options: [
+      { text: "Handle it yourself. Alone. Needing help isn't really in your vocabulary.", taboo: "lucha" },
+      { text: "Name it and address it. Imperfectly. But you use your voice.", taboo: "healthy" },
+      { text: "Manage it behind the scenes. HR is never involved. It stays in the family, so to speak.", taboo: "trapos" },
+      { text: "Don't bring it up at all. Some things at work just aren't discussed. You move around it.", taboo: "deso" },
+      { text: "Rehearse the conversation for three days first, calculating exactly how speaking up will make you look.", taboo: "quediran" }
+    ]
+  },
+  {
+    text: "Someone asks you to describe your biggest professional accomplishment. You...",
+    sub: "What does your body do before you answer?",
+    options: [
+      { text: "Scan the room before you answer. Will claiming this make you look like too much?", taboo: "quediran" },
+      { text: "Feel a flash of guilt, like taking credit is somehow disloyal to where you came from.", taboo: "madre" },
+      { text: "Start distributing the credit before you finish the sentence. Your name feels wrong in the story.", taboo: "bajale" },
+      { text: "Own it. Out loud. Without softening it first. (Still working on the apology reflex but getting there.)", taboo: "healthy" },
+      { text: "Lead with how hard it was. The struggle is the part that feels safe to claim.", taboo: "lucha" }
+    ]
+  },
+  {
+    text: "Your mother calls to say she disapproves of a major decision you've made. You...",
+    sub: "The real answer, not the one you'd give at Sunday dinner.",
+    options: [
+      { text: "Hold your ground. With love, with guilt, but you hold it. That's new and it counts.", taboo: "healthy" },
+      { text: "Feel like you're abandoning a post. Like choosing yourself is the same as leaving everyone behind.", taboo: "lucha" },
+      { text: "The guilt is immediate and crushing. You spend the next three days wondering if she's right.", taboo: "madre" },
+      { text: "Say nothing back. You'll process this alone. Conflict lives inside, never out loud.", taboo: "trapos" },
+      { text: "Start wondering what everyone else, not just her, will think about this decision.", taboo: "quediran" }
+    ]
+  },
+  {
+    text: "A trusted colleague asks if you're okay. You say...",
+    sub: "Reflexively, before you choose your words.",
+    options: [
+      { text: "A little of the truth, actually. It felt terrifying. You did it anyway. Progress.", taboo: "healthy" },
+      { text: "'I'm managing.' Struggle is private. You've always handled it alone.", taboo: "lucha" },
+      { text: "'Of course!' You can't let anyone see the cracks. Not here. Not ever.", taboo: "quediran" },
+      { text: "'Just tired.' You minimized it before you finished the sentence. The real answer stays inside.", taboo: "trapos" },
+      { text: "'I'm fine.' Full stop. Hard pivot. The conversation is already over.", taboo: "deso" }
+    ]
+  },
+  {
+    text: "At your most honest, the voice you hear most in your head sounds like...",
+    sub: "Your tia already knows the answer. Do you?",
+    options: [
+      { text: "It's getting quieter. You're doing the work and it's showing up in your life.", taboo: "healthy" },
+      { text: "'Que van a pensar?' What will they think? The question that never takes a day off.", taboo: "quediran" },
+      { text: "'De eso no se habla.' That's not something we discuss. File it away and move on.", taboo: "deso" },
+      { text: "'Los trapos sucios se lavan en casa.' Handle it yourself. In private. Always.", taboo: "trapos" },
+      { text: "'Bajale dos rayitas.' Don't be so much. It was said with love. It still left a mark.", taboo: "bajale" }
+    ]
+  }
+]!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Which Cultural Taboo Is Running Your Life? | Denise Soler Cox</title>
+<script>
+  (function(w, d, t, h, s, n) {
+    w.FlodeskObject = n;
+    var fn = function() { (w[n].q = w[n].q || []).push(arguments); };
+    w[n] = w[n] || fn;
+    var f = d.getElementsByTagName(t)[0];
+    var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
+    var sm = d.createElement(t); sm.async = true; sm.type = 'module';
+    sm.src = h + s + '.mjs' + v; f.parentNode.insertBefore(sm, f);
+    var sn = d.createElement(t); sn.async = true; sn.noModule = true;
+    sn.src = h + s + '.js' + v; f.parentNode.insertBefore(sn, f);
+  })(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
+</script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: #fdf9f7;
+    color: #1a1a1a;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  #quiz-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+  }
+
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* Progress */
+  .progress-bar-bg {
+    height: 4px;
+    background: #f0e8ec;
+    border-radius: 2px;
+    margin-bottom: 1.75rem;
+  }
+  .progress-bar-fill {
+    height: 4px;
+    background: #D4537E;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+
+  /* Typography */
+  .badge {
+    display: inline-block;
+    background: #FBEAF0;
+    color: #993556;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 14px;
+    border-radius: 99px;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.03em;
+  }
+
+  .q-label {
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .q-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.4;
+    margin-bottom: 0.35rem;
+  }
+
+  .q-sub {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .intro-sub {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+  }
+
+  /* Intro list */
+  .intro-list {
+    list-style: none;
+    margin-bottom: 2rem;
+    border: 1px solid #f0e8ec;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .intro-list li {
+    font-size: 14px;
+    color: #555;
+    padding: 10px 16px;
+    border-bottom: 1px solid #f0e8ec;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .intro-list li:last-child { border-bottom: none; }
+  .intro-list li .arrow { color: #D4537E; font-weight: 700; }
+
+  /* Options */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+
+  .option-btn {
+    background: #ffffff;
+    border: 1.5px solid #e8dde2;
+    border-radius: 12px;
+    padding: 14px 18px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 15px;
+    color: #1a1a1a;
+    line-height: 1.5;
+    transition: border-color 0.15s, background 0.15s;
+    font-family: inherit;
+  }
+  .option-btn:hover {
+    background: #fdf2f6;
+    border-color: #D4537E;
+  }
+  .option-btn.selected {
+    border: 2px solid #D4537E;
+    background: #FBEAF0;
+    color: #4B1528;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    background: #D4537E;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.15s, transform 0.1s;
+    font-family: inherit;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover { background: #c0436e; }
+  .btn-primary:active { transform: scale(0.99); }
+  .btn-primary:disabled { background: #e8b4c6; cursor: not-allowed; }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1.5px solid #e8dde2;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #888;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    font-family: inherit;
+    transition: background 0.15s;
+  }
+  .btn-secondary:hover { background: #fdf9f7; }
+
+  /* Result hero */
+  .result-hero {
+    background: linear-gradient(135deg, #FBEAF0 0%, #fdf2f6 100%);
+    border-radius: 14px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    text-align: center;
+    border: 1px solid #f5d0df;
+  }
+  .result-eyebrow {
+    font-size: 11px;
+    color: #993556;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+  .result-taboo-phrase {
+    font-size: 14px;
+    color: #72243E;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+  .result-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #3d0f1e;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+  .result-desc {
+    font-size: 15px;
+    color: #72243E;
+    line-height: 1.7;
+  }
+
+  /* Result sections */
+  .result-section { margin-bottom: 1.75rem; }
+  .result-section h3 {
+    font-size: 11px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .pattern-card {
+    background: #fdf9f7;
+    border: 1px solid #f0e8ec;
+    border-radius: 10px;
+    padding: 13px 16px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+    padding-left: 36px;
+    position: relative;
+  }
+  .pattern-card::before {
+    content: "→";
+    position: absolute;
+    left: 14px;
+    color: #D4537E;
+    font-weight: 700;
+  }
+
+  /* Score bars */
+  .score-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .score-label {
+    font-size: 12px;
+    color: #666;
+    width: 175px;
+    flex-shrink: 0;
+    line-height: 1.3;
+  }
+  .score-track {
+    flex: 1;
+    height: 6px;
+    background: #f0e8ec;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .score-fill {
+    height: 6px;
+    border-radius: 3px;
+    background: #D4537E;
+    transition: width 1.2s ease;
+  }
+  .score-num {
+    font-size: 12px;
+    color: #aaa;
+    width: 20px;
+    text-align: right;
+  }
+
+  /* All ten callout */
+  .all-ten-callout {
+    background: #fdf9f7;
+    border-left: 3px solid #D4537E;
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+  }
+  .all-ten-callout em { color: #993556; font-style: italic; }
+
+  /* Book callout */
+  .book-callout {
+    background: #ffffff;
+    border: 1.5px solid #f0e8ec;
+    border-radius: 14px;
+    padding: 1.25rem;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 1.75rem;
+  }
+  .book-cover {
+    width: 58px;
+    height: 78px;
+    background: linear-gradient(140deg, #7CBDE8 0%, #D4537E 100%);
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.3;
+    padding: 6px;
+  }
+  .book-text h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+  }
+  .book-text p {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.6;
+  }
+
+  /* Next step */
+  .next-card {
+    background: #FBEAF0;
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 14px;
+    color: #4B1528;
+    line-height: 1.7;
+  }
+
+  /* Share row */
+  .share-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+  .share-row button { flex: 1; }
+
+  .tag-note {
+    font-size: 13px;
+    color: #aaa;
+    text-align: center;
+  }
+  .tag-note strong { color: #D4537E; }
+
+  /* Capture screen */
+  .capture-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .capture-sub {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+
+  input[type=text], input[type=email] {
+    display: block;
+    width: 100%;
+    padding: 13px 16px;
+    font-size: 15px;
+    border: 1.5px solid #e8dde2;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  input[type=text]:focus, input[type=email]:focus {
+    border-color: #D4537E;
+  }
+
+  .privacy-note {
+    font-size: 12px;
+    color: #bbb;
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 480px) {
+    #quiz-wrap { padding: 1.75rem 1.25rem; }
+    h1 { font-size: 24px; }
+    .q-text { font-size: 18px; }
+    .share-row { flex-direction: column; }
+    .score-label { width: 130px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<div id="quiz-wrap">
+
+  <!-- INTRO SCREEN -->
+  <div id="screen-intro" class="screen active" style="display:block;">
+    <div class="badge">Free quiz</div>
+    <h1>Títí me preguntó... and now so will this quiz.</h1>
     <p class="intro-sub">You already know the rules. Bájale dos rayitas (don’t be too much). De eso no se habla (we don’t talk about that). Los trapos sucios se lavan en casa (keep the dirty laundry at home).<br><br>You’ve been living by them your whole life, and honestly? You’ve been really good at it. Gold star. A+ in cultural compliance.<br><br>This quiz is here to name the one that’s been running the show. Not to shame you, your tiías did enough of that already. Just to finally give it a name.<br><br>10 questions. 5 minutes. Zero judgment. (Okay, maybe a little self-recognition. But the healing kind.)</p>
     <ul class="intro-list">
       <li><span class="arrow">→</span> 10 questions, 5 minutes</li>
@@ -431,7 +1074,7 @@
       <li><span class="arrow">→</span> Your result includes how this taboo shows up in your life and what to do next</li>
       <li><span class="arrow">→</span> Designed for first-gen Latinas ready to stop being managed by rules they didn't choose</li>
     </ul>
-    <button class="btn-primary" onclick="startQuiz()">Start the quiz →</button>
+    <button class="btn-primary" onclick="startQuiz()">I’m ready. Let’s go. →</button>
   </div>
 
   <!-- QUIZ SCREEN -->
@@ -1066,7 +1709,7 @@ const questions = [
   <!-- INTRO SCREEN -->
   <div id="screen-intro" class="screen active" style="display:block;">
     <div class="badge">Free quiz</div>
-    <h1>Which cultural rule has been running your life? <span style="font-size:0.7em; font-weight:400; color:#993556;">(Don't worry, it's not your fault.)</span></h1>
+    <h1>Títí me preguntó... and now so will this quiz.</h1>
     <p class="intro-sub">You already know the rules. Bájale dos rayitas (don’t be too much). De eso no se habla (we don’t talk about that). Los trapos sucios se lavan en casa (keep the dirty laundry at home).<br><br>You’ve been living by them your whole life, and honestly? You’ve been really good at it. Gold star. A+ in cultural compliance.<br><br>This quiz is here to name the one that’s been running the show. Not to shame you, your tiías did enough of that already. Just to finally give it a name.<br><br>10 questions. 5 minutes. Zero judgment. (Okay, maybe a little self-recognition. But the healing kind.)</p>
     <ul class="intro-list">
       <li><span class="arrow">→</span> 10 questions, 5 minutes</li>
@@ -1074,7 +1717,7 @@ const questions = [
       <li><span class="arrow">→</span> Your result includes how this taboo shows up in your life and what to do next</li>
       <li><span class="arrow">→</span> Designed for first-gen Latinas ready to stop being managed by rules they didn't choose</li>
     </ul>
-    <button class="btn-primary" onclick="startQuiz()">Start the quiz →</button>
+    <button class="btn-primary" onclick="startQuiz()">I’m ready. Let’s go. →</button>
   </div>
 
   <!-- QUIZ SCREEN -->
