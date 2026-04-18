@@ -505,6 +505,12 @@
       <p style="font-size:12px; color:#993556;">Simon &amp; Schuster · August 18, 2026</p>
     </div>
 
+    <div style="background:#fdf9f7; border:1px solid #f0e8ec; border-radius:12px; padding:1.25rem; text-align:center; margin-bottom:1.25rem;">
+      <div style="font-size:11px; color:#993556; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-bottom:0.5rem;">Follow along</div>
+      <div style="font-size:17px; font-weight:600; color:#1a1a1a; margin-bottom:0.75rem;">The book doesn't come out until August 18. Your liberation starts now.</div>
+      <div style="font-size:14px; color:#555; line-height:1.7; margin-bottom:1rem;">Every week between now and launch, I'm breaking down these taboos on Instagram — where they come from, what they cost you, and exactly how to start dismantling them. Follow along so you don't miss a thing.</div>
+      <a href="https://www.instagram.com/denisesolercox" target="_blank" style="display:block; background:#D4537E; color:white; border-radius:12px; padding:14px 28px; font-size:15px; font-weight:600; text-decoration:none; margin-bottom:8px;">Follow @denisesolercox on Instagram →</a>
+    </div>
     <div style="background:#fdf9f7; border:1px solid #f0e8ec; border-radius:12px; padding:1.25rem; text-align:center;">
       <div style="font-size:14px; color:#555; line-height:1.6; margin-bottom:12px;">Know a Latina who needs to see this? Send her the quiz.</div>
       <button class="btn-primary" onclick="shareQuiz()">Send the quiz to a friend</button>
@@ -785,7 +791,7 @@ function submitAndShowResults() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          formId: '69d02d0b5f0536d5951f03c1',
+          formId: '69d18ea9808a53aa46a4a7e4',
           fields: { firstName: name, email: email },
           segmentIds: [segment]
         })
@@ -864,7 +870,7 @@ function retakeQuiz() {
 </html>
 
 <!-- Flodesk hidden form for email capture -->
-<div id="fd-form-69d02d0b5f0536d5951f03c1" style="display:none;position:absolute;"></div>
+<div id="fd-form-69d18ea9808a53aa46a4a7e4" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;"></div>
 <script>
   (function(w, d, t, h, s, n) {
     w.FlodeskObject = n;
@@ -888,7 +894,7 @@ function retakeQuiz() {
 </script>
 <script>
   window.fd('form', {
-    formId: '69d02d0b5f0536d5951f03c1',
+    formId: '69d18ea9808a53aa46a4a7e4',
     containerEl: '#fd-form-69d02d0b5f0536d5951f03c1'
   });
 </script>
