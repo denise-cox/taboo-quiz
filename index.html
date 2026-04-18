@@ -756,7 +756,10 @@ function prevQuestion() {
 function calculateScores() {
   scores = { quediran:0, bajale:0, trapos:0, deso:0, lucha:0, madre:0 };
   questions.forEach((q, qi) => {
-    if (answers[qi] !== null) scores[q.options[answers[qi]].taboo]++;
+    if (answers[qi] !== null) {
+      var t = q.options[answers[qi]].taboo;
+      if (t !== 'healthy') scores[t]++;
+    }
   });
   primaryResult = Object.keys(scores).reduce((a,b) => scores[a] >= scores[b] ? a : b);
 }
