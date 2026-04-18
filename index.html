@@ -4,6 +4,515 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Which Cultural Taboo Is Running Your Life? | Denise Soler Cox</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: #fdf9f7;
+    color: #1a1a1a;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
+  #quiz-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+  }
+
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* Progress */
+  .progress-bar-bg {
+    height: 4px;
+    background: #f0e8ec;
+    border-radius: 2px;
+    margin-bottom: 1.75rem;
+  }
+  .progress-bar-fill {
+    height: 4px;
+    background: #D4537E;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+
+  /* Typography */
+  .badge {
+    display: inline-block;
+    background: #FBEAF0;
+    color: #993556;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 14px;
+    border-radius: 99px;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.03em;
+  }
+
+  .q-label {
+    font-size: 11px;
+    color: #999;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .q-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.4;
+    margin-bottom: 0.35rem;
+  }
+
+  .q-sub {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .intro-sub {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+  }
+
+  /* Intro list */
+  .intro-list {
+    list-style: none;
+    margin-bottom: 2rem;
+    border: 1px solid #f0e8ec;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .intro-list li {
+    font-size: 14px;
+    color: #555;
+    padding: 10px 16px;
+    border-bottom: 1px solid #f0e8ec;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .intro-list li:last-child { border-bottom: none; }
+  .intro-list li .arrow { color: #D4537E; font-weight: 700; }
+
+  /* Options */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+  }
+
+  .option-btn {
+    background: #ffffff;
+    border: 1.5px solid #e8dde2;
+    border-radius: 12px;
+    padding: 14px 18px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 15px;
+    color: #1a1a1a;
+    line-height: 1.5;
+    transition: border-color 0.15s, background 0.15s;
+    font-family: inherit;
+  }
+  .option-btn:hover {
+    background: #fdf2f6;
+    border-color: #D4537E;
+  }
+  .option-btn.selected {
+    border: 2px solid #D4537E;
+    background: #FBEAF0;
+    color: #4B1528;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    background: #D4537E;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.15s, transform 0.1s;
+    font-family: inherit;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary:hover { background: #c0436e; }
+  .btn-primary:active { transform: scale(0.99); }
+  .btn-primary:disabled { background: #e8b4c6; cursor: not-allowed; }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1.5px solid #e8dde2;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-size: 14px;
+    color: #888;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+    font-family: inherit;
+    transition: background 0.15s;
+  }
+  .btn-secondary:hover { background: #fdf9f7; }
+
+  /* Result hero */
+  .result-hero {
+    background: linear-gradient(135deg, #FBEAF0 0%, #fdf2f6 100%);
+    border-radius: 14px;
+    padding: 1.75rem;
+    margin-bottom: 1.75rem;
+    text-align: center;
+    border: 1px solid #f5d0df;
+  }
+  .result-eyebrow {
+    font-size: 11px;
+    color: #993556;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+  .result-taboo-phrase {
+    font-size: 14px;
+    color: #72243E;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+  .result-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: #3d0f1e;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+  .result-desc {
+    font-size: 15px;
+    color: #72243E;
+    line-height: 1.7;
+  }
+
+  /* Result sections */
+  .result-section { margin-bottom: 1.75rem; }
+  .result-section h3 {
+    font-size: 11px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .pattern-card {
+    background: #fdf9f7;
+    border: 1px solid #f0e8ec;
+    border-radius: 10px;
+    padding: 13px 16px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+    padding-left: 36px;
+    position: relative;
+  }
+  .pattern-card::before {
+    content: "→";
+    position: absolute;
+    left: 14px;
+    color: #D4537E;
+    font-weight: 700;
+  }
+
+  /* Score bars */
+  .score-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .score-label {
+    font-size: 12px;
+    color: #666;
+    width: 175px;
+    flex-shrink: 0;
+    line-height: 1.3;
+  }
+  .score-track {
+    flex: 1;
+    height: 6px;
+    background: #f0e8ec;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .score-fill {
+    height: 6px;
+    border-radius: 3px;
+    background: #D4537E;
+    transition: width 1.2s ease;
+  }
+  .score-num {
+    font-size: 12px;
+    color: #aaa;
+    width: 20px;
+    text-align: right;
+  }
+
+  /* All ten callout */
+  .all-ten-callout {
+    background: #fdf9f7;
+    border-left: 3px solid #D4537E;
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    margin-bottom: 1.5rem;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+  }
+  .all-ten-callout em { color: #993556; font-style: italic; }
+
+  /* Book callout */
+  .book-callout {
+    background: #ffffff;
+    border: 1.5px solid #f0e8ec;
+    border-radius: 14px;
+    padding: 1.25rem;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 1.75rem;
+  }
+  .book-cover {
+    width: 58px;
+    height: 78px;
+    background: linear-gradient(140deg, #7CBDE8 0%, #D4537E 100%);
+    border-radius: 6px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1.3;
+    padding: 6px;
+  }
+  .book-text h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+  }
+  .book-text p {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.6;
+  }
+
+  /* Next step */
+  .next-card {
+    background: #FBEAF0;
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 14px;
+    color: #4B1528;
+    line-height: 1.7;
+  }
+
+  /* Share row */
+  .share-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+  .share-row button { flex: 1; }
+
+  .tag-note {
+    font-size: 13px;
+    color: #aaa;
+    text-align: center;
+  }
+  .tag-note strong { color: #D4537E; }
+
+  /* Capture screen */
+  .capture-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .capture-sub {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.75rem;
+  }
+
+  input[type=text], input[type=email] {
+    display: block;
+    width: 100%;
+    padding: 13px 16px;
+    font-size: 15px;
+    border: 1.5px solid #e8dde2;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    background: #ffffff;
+    color: #1a1a1a;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  input[type=text]:focus, input[type=email]:focus {
+    border-color: #D4537E;
+  }
+
+  .privacy-note {
+    font-size: 12px;
+    color: #bbb;
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  @media (max-width: 480px) {
+    #quiz-wrap { padding: 1.75rem 1.25rem; }
+    h1 { font-size: 24px; }
+    .q-text { font-size: 18px; }
+    .share-row { flex-direction: column; }
+    .score-label { width: 130px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<div id="quiz-wrap">
+
+  <!-- INTRO SCREEN -->
+  <div id="screen-intro" class="screen active" style="display:block;">
+    <div class="badge">Free quiz</div>
+    <h1>Which cultural taboo is running your life?</h1>
+    <p class="intro-sub">You already know the rules. Bájale dos rayitas. De eso no se habla. Los trapos sucios se lavan en casa. You’ve lived by them your whole life. And they have cost you more than you know. This quiz reveals the one that’s been running you, shaping your experience, before you even knew it had a hold on you.</p>
+    <ul class="intro-list">
+      <li><span class="arrow">→</span> 10 questions, 5 minutes</li>
+      <li><span class="arrow">→</span> Rooted in Denise Soler Cox’s book <em>What Will They Say?</em> (Simon &amp; Schuster, 2026)</li>
+      <li><span class="arrow">→</span> Your result includes how this taboo shows up in your life and what to do next</li>
+      <li><span class="arrow">→</span> Designed for first-gen Latinas ready to stop being managed by rules they didn't choose</li>
+    </ul>
+    <button class="btn-primary" onclick="startQuiz()">Start the quiz →</button>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="screen-quiz" class="screen" style="display:none;">
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+    <div class="q-label" id="q-counter">Question 1 of 10</div>
+    <div class="q-text" id="q-text"></div>
+    <div class="q-sub" id="q-sub"></div>
+    <div class="options" id="options-container"></div>
+    <button class="btn-primary" id="next-btn" disabled onclick="nextQuestion()">Next →</button>
+    <button class="btn-secondary" id="back-btn" onclick="prevQuestion()" style="display:none;">← Back</button>
+  </div>
+
+  <!-- CAPTURE SCREEN -->
+  <div<div id="screen-capture" class="screen" style="display:none;">
+    <div class="q-label">Almost there</div>
+    <p class="capture-title">Where should we send your full taboo profile?</p>
+    <p class="capture-sub">Enter your name and email to unlock your complete results. You’ll also get a copy of the introduction to <em>What Will They Say?</em> sent straight to your inbox, the chapter that started it all.</p>
+    <input type="text" id="cap-name" placeholder="Your first name" />
+    <input type="email" id="cap-email" placeholder="Your email address" />
+    <button class="btn-primary" onclick="submitAndShowResults()">Show my results →</button>
+    <p class="privacy-note">No spam. Ever. Unsubscribe anytime.</p>
+  </div>
+
+  <!-- EMAIL CONFIRM SCREEN -->
+  <div id="screen-confirm" class="screen" style="display:none;">
+    <div class="result-hero" style="text-align:center; margin-bottom:1.5rem;">
+      <div class="result-eyebrow">You’re in</div>
+      <div class="result-name" style="font-size:22px; margin-bottom:0.75rem;">Check your inbox</div>
+      <div class="result-desc">We just sent your full taboo profile plus the introduction to <em>What Will They Say?</em> to your email. If you don’t see it within a few minutes, check your spam folder and move it to your inbox so you don’t miss a thing.</div>
+    </div>
+    <button class="btn-primary" onclick="showResults()">See my results now →</button>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div id="screen-results" class="screen" style="display:none;">
+    <div class="result-hero">
+      <div class="result-eyebrow">Your primary taboo</div>
+      <div class="result-taboo-phrase" id="res-taboo-phrase"></div>
+      <div class="result-name" id="res-name"></div>
+      <div class="result-desc" id="res-desc"></div>
+    </div>
+
+    <div class="result-section">
+      <h3>How this shows up in your life</h3>
+      <div id="res-patterns"></div>
+    </div>
+
+    <div class="result-section">
+      <h3>Your full taboo profile</h3>
+      <div id="res-score-bars"></div>
+    </div>
+
+    <div class="all-ten-callout">
+      This quiz reveals your primary taboo, but there are <em>10 cultural rules</em> that may be running your life, your leadership, and your relationships. All ten are named, traced, and broken open in <em>What Will They Say?</em>, and some of the ones you didn't score highest on might surprise you most.
+    </div>
+
+    <div class="book-callout">
+      <div class="book-cover">What Will They Say?</div>
+      <div class="book-text">
+        <h4>Read all 10 taboos in the book</h4>
+        <p>Denise Soler Cox’s debut, <em>What Will They Say?</em> (Simon &amp; Schuster, 2026), names all ten inherited cultural rules and traces exactly how they show up in your career, your relationships, and your body.</p>
+      </div>
+    </div>
+
+    <div class="result-section">
+      <h3>Your next step</h3>
+      <div class="next-card" id="res-next"></div>
+    </div>
+
+    <div class="share-row">
+      <button class="btn-primary" onclick="shareResult()">Share your result</button>
+      <button class="btn-secondary" onclick="retakeQuiz()">Retake quiz</button>
+    </div>
+    <p class="tag-note" style="margin-bottom:1.5rem;">Tag <strong>@denisesolercox</strong> with your result</p>
+
+    <div style="background:#FBEAF0; border-radius:14px; padding:1.5rem; text-align:center; border:1px solid #f5d0df; margin-bottom:1.25rem;">
+      <div style="font-size:11px; color:#993556; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-bottom:0.5rem;">Pre-order the book</div>
+      <div style="font-size:18px; font-weight:600; color:#3d0f1e; line-height:1.3; margin-bottom:0.75rem;">Ready to break free from all 10 taboos?</div>
+      <div style="font-size:14px; color:#72243E; line-height:1.7; margin-bottom:1.25rem;">You just found your primary one. The other nine are waiting in <em>What Will They Say?</em>, and some of them will surprise you even more.</div>
+      <a href="https://www.simonandschuster.com/books/What-Will-They-Say/Denise-Soler-Cox/9781668082966" target="_blank" style="display:block; background:#D4537E; color:white; border-radius:12px; padding:15px 28px; font-size:16px; font-weight:600; text-decoration:none; margin-bottom:8px;">Pre-order What Will They Say? →</a>
+      <p style="font-size:12px; color:#993556;">Simon &amp; Schuster · August 18, 2026</p>
+    </div>
+
+    <div style="background:#fdf9f7; border:1px solid #f0e8ec; border-radius:12px; padding:1.25rem; text-align:center;">
+      <div style="font-size:14px; color:#555; line-height:1.6; margin-bottom:12px;">Know a Latina who needs to see this? Send her the quiz.</div>
+      <button class="btn-primary" onclick="shareQuiz()">Send the quiz to a friend</button>
+    </div>
+  </div>
+
+</div>
+
 <script>
 const questions = [
   {
@@ -122,42 +631,42 @@ const taboos = {
   quediran: {
     phrase: "¿Qué dirán?",
     name: "The fear of what others will say",
-    desc: "Ah. The invisible audience. They have excellent seats and terrible opinions. You've been making decisions with them in your head for so long, you don't even notice anymore. Their imagined judgment shapes your choices before you're aware you're making one.",
+    desc: "You've been making decisions with an invisible audience in your head for so long, you don't even notice anymore. Their imagined judgment shapes your choices before you're aware you're making one.",
     patterns: ["You edit yourself in meetings before you even speak", "Other people's opinions feel more real than your own", "Success feels dangerous, it raises the stakes of being watched"],
     next: "Start noticing the question 'what will they think?' before you act on it. You don't need to stop asking it. You need to hear it, name it, and then ask: what do I actually think? Chapter 1 of What Will They Say? is your next step."
   },
   bajale: {
     phrase: "¡Bájale dos rayitas!",
     name: "The compulsion to shrink",
-    desc: "Someone actually said this to you like it was helpful. It was not. You were told, directly or indirectly, that your intensity, your ambition, your presence was too much. So you learned to make yourself smaller. Now it's automatic, and it's costing you.",
+    desc: "You were told, directly or indirectly, that your intensity, your ambition, your presence was too much. So you learned to make yourself smaller. Now it's automatic, and it's costing you.",
     patterns: ["You credit the team when the win was yours", "You preface your opinions with apologies", "You feel guilty when you take up space or make a big claim"],
     next: "The work isn't to become louder. It's to stop apologizing for your size. Practice claiming one thing per week, one win, one opinion, one boundary, without softening it first. Chapter 4 of What Will They Say? breaks down exactly why this rule was installed, and how to uninstall it."
   },
   trapos: {
     phrase: "Los trapos sucios se lavan en casa",
     name: "The code of private suffering",
-    desc: "The original silent sufferer. That's you. Loyalty meant silence. Strength meant handling it alone. You learned early that sharing what's wrong, at work, in your family, inside yourself, was a form of betrayal. So you've been carrying it all.",
+    desc: "Loyalty meant silence. Strength meant handling it alone. You learned early that sharing what's wrong, at work, in your family, inside yourself, was a form of betrayal. So you've been carrying it all.",
     patterns: ["You never take problems to HR or leadership, ever", "You minimize your struggles, even with people you trust", "You feel relief when things look fine from the outside, even when they aren't"],
     next: "The silence was a survival strategy, honor it for what it was. And then start questioning one small thing: who would it actually hurt if you told the truth about this? Chapter 1 of What Will They Say? starts here."
   },
   deso: {
     phrase: "De eso no se habla",
     name: "The unspoken rule of forbidden topics",
-    desc: "There are whole rooms in your inner world with the lights off and the door closed. Some things were simply not discussed. Mental health, trauma, dysfunction, desire, there was an entire map of forbidden territory in your house. You learned to navigate around it so well that now you can barely find the words for what's inside you.",
+    desc: "Some things were simply not discussed. Mental health, trauma, dysfunction, desire, there was an entire map of forbidden territory in your house. You learned to navigate around it so well that now you can barely find the words for what's inside you.",
     patterns: ["You have feelings you can't name because there were no words for them growing up", "Therapy or emotional conversations feel almost physically uncomfortable", "You change the subject instinctively when things get too real"],
     next: "The first act of freedom is just finding language. Name one thing this week, out loud, to someone safe, that has never been named before. Chapter 2 of What Will They Say? is your companion for this."
   },
   lucha: {
-    phrase: "La lucha sigue",
+    phrase: "Beyond la lucha",
     name: "The belief that struggle is the only proof of worth",
-    desc: "Rest? In this familia? In this economy? Your people suffered to give you what you have. So ease feels dangerous, like betrayal, like you haven't paid enough yet. You grind not just because you have to, but because resting feels morally wrong.",
+    desc: "Your people suffered to give you what you have. So ease feels dangerous, like betrayal, like you haven't paid enough yet. You grind not just because you have to, but because resting feels morally wrong.",
     patterns: ["You feel guilty when things go well without a fight", "You use how hard something was as evidence you deserved it", "Rest, joy, and ease trigger shame more than satisfaction"],
     next: "Your inheritance is the sacrifice. It is not the suffering. Chapter 9 of What Will They Say? is specifically about dismantling the belief that struggle is the price of belonging."
   },
   madre: {
     phrase: "Don't dishonor your mother",
     name: "The weight of unconditional loyalty",
-    desc: "You have her eyes, her cooking, and apparently her veto power over your major life decisions. Your love for your family, especially your mother, has been one of your greatest strengths. And one of your most invisible constraints. You've learned to read the room, keep the peace, and never do anything that reflects badly on where you came from.",
+    desc: "Your love for your family, especially your mother, has been one of your greatest strengths. And one of your most invisible constraints. You've learned to read the room, keep the peace, and never do anything that reflects badly on where you came from.",
     patterns: ["You loop family opinion into major decisions automatically", "Disappointing her feels like an identity crisis, not just a disagreement", "You confuse loyalty with self-erasure"],
     next: "Loving your mother and building your own life are not mutually exclusive, even when it feels that way. Chapter 6 of What Will They Say? is the one readers call the hardest to read, and the most necessary."
   }
@@ -169,7 +678,7 @@ const tabooShortNames = {
   bajale: "Bájale dos rayitas",
   trapos: "Los trapos sucios",
   deso: "De eso no se habla",
-  lucha: "La lucha sigue",
+  lucha: "Beyond la lucha",
   madre: "Don't dishonor your mother"
 };
 
@@ -247,7 +756,7 @@ function prevQuestion() {
 function calculateScores() {
   scores = { quediran:0, bajale:0, trapos:0, deso:0, lucha:0, madre:0 };
   questions.forEach((q, qi) => {
-    if (answers[qi] !== null) var t = q.options[answers[qi]].taboo; if (t !== 'healthy') scores[t]++;
+    if (answers[qi] !== null) scores[q.options[answers[qi]].taboo]++;
   });
   primaryResult = Object.keys(scores).reduce((a,b) => scores[a] >= scores[b] ? a : b);
 }
@@ -256,71 +765,32 @@ function submitAndShowResults() {
   var name = document.getElementById('cap-name').value.trim();
   var email = document.getElementById('cap-email').value.trim();
 
+  // Always show results regardless of email
+  // Submit to Flodesk in background if email provided
   if (email) {
-    try {
-      // Fill in the hidden Flodesk form fields
-      var fdForm = document.getElementById('fd-form-69d18ea9808a53aa46a4a7e4');
-      if (fdForm) {
-        var nameField = fdForm.querySelector('input[name="firstName"], input[placeholder*="name"], input[placeholder*="Name"]');
-        var emailField = fdForm.querySelector('input[name="email"], input[type="email"]');
-        var submitBtn = fdForm.querySelector('button[type="submit"], button');
-        
-        if (nameField) {
-          nameField.value = name;
-          nameField.dispatchEvent(new Event('input', { bubbles: true }));
-          nameField.dispatchEvent(new Event('change', { bubbles: true }));
-        }
-        if (emailField) {
-          emailField.value = email;
-          emailField.dispatchEvent(new Event('input', { bubbles: true }));
-          emailField.dispatchEvent(new Event('change', { bubbles: true }));
-        }
-        
-        // Wait for React state to update then submit
-        setTimeout(function() {
-          if (submitBtn) submitBtn.click();
-        }, 500);
-      }
-    } catch(e) {
-      console.log('Flodesk error:', e);
-    }
-
-    // Also try direct API as backup
     var segmentMap = {
-      quediran: '69d07b5b4a086815315a42e1',
-      bajale: '69d07e86808a53aa46a4a2c7',
-      trapos: '69d07f512b1eab093cf9a6ab',
-      deso: '69d07ee576c57748dd1b22bc',
-      lucha: '69d07f16dfa5e57e528bf576',
-      madre: '69d07f5ca5aa26637485ea45'
+      quediran: 'quiz-quediran',
+      bajale: 'quiz-bajale',
+      trapos: 'quiz-trapos',
+      deso: 'quiz-deso',
+      lucha: 'quiz-lucha',
+      madre: 'quiz-madre'
     };
-    var segment = segmentMap[primaryResult] || '69d07b5b4a086815315a42e1';
-    
-    // Submit to Flodesk via REST API with authentication
-    var segmentId = segment;
-    var apiKey = 'fd_key_af97bfc953a84af3ba3f6fa80f155630.W1rAx5Q8ddBTzWuMQQJK5ILbz9fqKaGIEB2OzmyduIAZuLwsaXkoSc4kSf8ZqPPdMu4IvpUHlQVHbJ2DfMrFwQVfZjjHRs4a6WTg6CtBnXoSBQCevoptRJhOVjd4lgw9S9mCS5SvzP8btSqfqY4IzC3ZsQOpmnCbeOdsnjPjYNs3tysWx7jUgB6EqHTScNpk';
-    
-    fetch('https://api.flodesk.com/v1/subscribers', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + btoa(apiKey + ':')
-      },
-      body: JSON.stringify({
-        email: email,
-        first_name: name,
-        segment_ids: [segmentId, '69d02cdbdfa5e57e528bf3e6']
-      })
-    }).then(function(r) {
-      console.log('Flodesk API status:', r.status);
-      return r.json();
-    }).then(function(data) {
-      console.log('Flodesk response:', JSON.stringify(data));
-    }).catch(function(e) {
-      console.log('Flodesk error:', e);
-    });
+    var segment = segmentMap[primaryResult] || 'quiz-taker';
+    try {
+      fetch('https://assets.flodesk.com/form-api/v1/embed/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formId: '69d02d0b5f0536d5951f03c1',
+          fields: { firstName: name, email: email },
+          segmentIds: [segment]
+        })
+      }).catch(function() {});
+    } catch(e) {}
   }
 
+  // Go straight to results - no confirm screen
   showResults();
 }
 
@@ -386,26 +856,38 @@ function retakeQuiz() {
   primaryResult = null;
   show('screen-intro');
 }
+</script>
+</body>
+</html>
 
-// Reinitialize all buttons after Carrd loads
-window.addEventListener('load', function() {
-  var startBtn = document.querySelector('[onclick="startQuiz()"]');
-  if (startBtn) {
-    startBtn.onclick = null;
-    startBtn.addEventListener('click', startQuiz);
-  }
-  var nextBtn = document.getElementById('next-btn');
-  if (nextBtn) {
-    nextBtn.onclick = null;
-    nextBtn.addEventListener('click', nextQuestion);
-  }
-  var backBtn = document.getElementById('back-btn');
-  if (backBtn) {
-    backBtn.onclick = null;
-    backBtn.addEventListener('click', prevQuestion);
-  }
-  console.log('Quiz initialized');
-});
+<!-- Flodesk hidden form for email capture -->
+<div id="fd-form-69d02d0b5f0536d5951f03c1" style="display:none;position:absolute;"></div>
+<script>
+  (function(w, d, t, h, s, n) {
+    w.FlodeskObject = n;
+    var fn = function() {
+      (w[n].q = w[n].q || []).push(arguments);
+    };
+    w[n] = w[n] || fn;
+    var f = d.getElementsByTagName(t)[0];
+    var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
+    var sm = d.createElement(t);
+    sm.async = true;
+    sm.type = 'module';
+    sm.src = h + s + '.mjs' + v;
+    f.parentNode.insertBefore(sm, f);
+    var sn = d.createElement(t);
+    sn.async = true;
+    sn.noModule = true;
+    sn.src = h + s + '.js' + v;
+    f.parentNode.insertBefore(sn, f);
+  })(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
+</script>
+<script>
+  window.fd('form', {
+    formId: '69d02d0b5f0536d5951f03c1',
+    containerEl: '#fd-form-69d02d0b5f0536d5951f03c1'
+  });
 </script>
 </body>
 </html>
