@@ -505,12 +505,6 @@
       <p style="font-size:12px; color:#993556;">Simon &amp; Schuster · August 18, 2026</p>
     </div>
 
-    <div style="background:#fdf9f7; border:1px solid #f0e8ec; border-radius:12px; padding:1.25rem; text-align:center; margin-bottom:1.25rem;">
-      <div style="font-size:11px; color:#993556; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-bottom:0.5rem;">Follow along</div>
-      <div style="font-size:17px; font-weight:600; color:#1a1a1a; margin-bottom:0.75rem;">The book doesn't come out until August 18. Your liberation starts now.</div>
-      <div style="font-size:14px; color:#555; line-height:1.7; margin-bottom:1rem;">Every week between now and launch, I'm breaking down these taboos on Instagram — where they come from, what they cost you, and exactly how to start dismantling them. Follow along so you don't miss a thing.</div>
-      <a href="https://www.instagram.com/denisesolercox" target="_blank" style="display:block; background:#D4537E; color:white; border-radius:12px; padding:14px 28px; font-size:15px; font-weight:600; text-decoration:none; margin-bottom:8px;">Follow @denisesolercox on Instagram →</a>
-    </div>
     <div style="background:#fdf9f7; border:1px solid #f0e8ec; border-radius:12px; padding:1.25rem; text-align:center;">
       <div style="font-size:14px; color:#555; line-height:1.6; margin-bottom:12px;">Know a Latina who needs to see this? Send her the quiz.</div>
       <button class="btn-primary" onclick="shareQuiz()">Send the quiz to a friend</button>
@@ -526,6 +520,7 @@ const questions = [
     sub: "Your tia is already nervous for you. What actually happens?",
     options: [
       { text: "You let yourself feel proud. You sit with it. You don't rush past the moment.", taboo: "healthy" },
+      { text: "They were genuinely, fully proud. No qualifiers. No warnings. And you let yourself receive it.", taboo: "healthy" },
       { text: "They celebrate, then someone says 'just don't get too big for your britches.' You laugh. Something in you goes quiet.", taboo: "bajale" },
       { text: "The first question out of anyone's mouth is whether you'll still make it to Sunday dinner. The guilt arrives before the congratulations.", taboo: "lucha" },
       { text: "Nobody says much. In your family, big feelings don't get a lot of airtime. You've always celebrated alone.", taboo: "deso" },
@@ -536,7 +531,8 @@ const questions = [
     text: "Growing up, you learned to manage your body by...",
     sub: "Be honest. What did you learn about how much space you were allowed to take up?",
     options: [
-      { text: "Expressing it freely. Your body was yours. Most days it still is.", taboo: "healthy" },
+      { text: "Expressing it freely. Your body was yours. You were taught to take up space, not apologize for it.", taboo: "healthy" },
+      { text: "It took time, but you've reclaimed it. The relationship isn't perfect but it's yours now.", taboo: "healthy" },
       { text: "Making it smaller. The clothes, the posture, the way you walked into rooms. Disappearing yourself before anyone else could.", taboo: "bajale" },
       { text: "Watching other women get policed and quietly learning the rules by watching what happened to them.", taboo: "deso" },
       { text: "Performing wholesomeness. The right clothes, the right amount of visible. Just enough but never too much.", taboo: "quediran" },
@@ -547,7 +543,8 @@ const questions = [
     text: "Growing up, when something hard was happening in your home, the family script was...",
     sub: "Your tia would like you to know she did not authorize this question either.",
     options: [
-      { text: "We talked about it. Imperfectly. But we named things.", taboo: "healthy" },
+      { text: "We talked about it. Imperfectly. But we named things and nobody had to carry it alone.", taboo: "healthy" },
+      { text: "My family wasn't perfect but hard things got named. I grew up knowing I could bring my real self home.", taboo: "healthy" },
       { text: "Give it another name. 'He's tired.' 'She's sensitive.' 'They have a passionate marriage.'", taboo: "trapos" },
       { text: "Say nothing. Keep moving. The silence was so complete you sometimes wondered if you'd imagined it.", taboo: "deso" },
       { text: "Protect the family name above everything else. What happened at home stayed at home.", taboo: "madre" },
@@ -559,6 +556,7 @@ const questions = [
     sub: "Which of these sounds most like your internal monologue?",
     options: [
       { text: "You take the break. The guilt shows up right on time. You take it anyway.", taboo: "healthy" },
+      { text: "You rest without much guilt. You were raised to believe you deserved to refill. Most days you still believe it.", taboo: "healthy" },
       { text: "Rest feels like disrespecting everything your parents sacrificed. So you push through. Again.", taboo: "lucha" },
       { text: "You don't tell anyone you're struggling. You manage it on the inside where nobody can see.", taboo: "trapos" },
       { text: "You haven't earned the right to rest yet. There's still more to prove. Maybe after the next thing.", taboo: "bajale" },
@@ -569,10 +567,11 @@ const questions = [
     text: "You catch yourself doing or saying something your mother used to do or say. You feel...",
     sub: "First feeling, before logic kicks in.",
     options: [
-      { text: "Amused. Some things are absolutely worth carrying forward.", taboo: "healthy" },
+      { text: "A mix of things. Pride that her strength lives in you. And awareness that not everything she passed down is yours to keep.", taboo: "healthy" },
+      { text: "Mostly warmth. She gave you good things. You've been able to sort through what to carry and what to put down.", taboo: "healthy" },
       { text: "A flash of recognition, then a quiet resolve. This stops with me.", taboo: "lucha" },
       { text: "Like you've been caught. Like something is running you that you didn't choose.", taboo: "deso" },
-      { text: "Proud. Her strength lives in you and you honor that fully.", taboo: "madre" },
+      { text: "Proud. Her strength lives in you and you honor that fully, even the parts that cost you.", taboo: "madre" },
       { text: "Frozen. You can see the pattern clearly. You just don't know how to step out of it yet.", taboo: "quediran" }
     ]
   },
@@ -580,7 +579,8 @@ const questions = [
     text: "When you're fully yourself, loud, unfiltered, completely present, the thought that follows is...",
     sub: "Your tia wants to know why you can't just act normal.",
     options: [
-      { text: "Nothing. This is just you. You've stopped apologizing for it.", taboo: "healthy" },
+      { text: "A beat of self-consciousness, and then you let it go. You're not all the way there yet but you're closer than you used to be.", taboo: "healthy" },
+      { text: "Nothing, actually. You grew up in a family that celebrated your fullness. You never learned to apologize for it.", taboo: "healthy" },
       { text: "'That was too much.' The edit arrives before you've even finished.", taboo: "bajale" },
       { text: "'I hope nobody saw that.' The visibility feels like a risk.", taboo: "trapos" },
       { text: "'What are they thinking right now?' The invisible audience takes their seats.", taboo: "quediran" },
@@ -591,8 +591,9 @@ const questions = [
     text: "Something is wrong at work, with your boss, a colleague, the culture. Your default move is...",
     sub: "What do you actually do, not what you wish you did.",
     options: [
-      { text: "Handle it yourself. Alone. Asking for help isn't really in your vocabulary.", taboo: "lucha" },
       { text: "Name it and address it. Imperfectly. But you use your voice.", taboo: "healthy" },
+      { text: "You address it clearly and without too much self-editing. You learned early that your voice is an asset, not a liability.", taboo: "healthy" },
+      { text: "Handle it yourself. Alone. Asking for help isn't really in your vocabulary.", taboo: "lucha" },
       { text: "Manage it behind the scenes. HR is never involved. It stays in the family, so to speak.", taboo: "trapos" },
       { text: "Don't bring it up at all. Some things at work just aren't discussed. You move around it.", taboo: "deso" },
       { text: "Rehearse the conversation for three days, calculating exactly how speaking up will make you look.", taboo: "quediran" }
@@ -603,6 +604,7 @@ const questions = [
     sub: "The real answer, not the one you'd give at Sunday dinner.",
     options: [
       { text: "Hold your ground. With love, with guilt, but you hold it. That's new and it counts.", taboo: "healthy" },
+      { text: "You listen, you consider, and you make your own call. Her disapproval lands but it doesn't decide. It's always been this way.", taboo: "healthy" },
       { text: "Feel like you're abandoning a post. Like choosing yourself is the same as leaving everyone behind.", taboo: "lucha" },
       { text: "The guilt is immediate and crushing. You spend the next three days wondering if she's right.", taboo: "madre" },
       { text: "Say nothing back. You'll process this alone. Conflict lives inside, never out loud.", taboo: "trapos" },
@@ -614,6 +616,7 @@ const questions = [
     sub: "Reflexively, before you choose your words.",
     options: [
       { text: "Those parts are getting smaller. You've been opening those doors. Slowly.", taboo: "healthy" },
+      { text: "There aren't many. You were raised in a family where most things could be named. The ones that couldn't, you've named yourself.", taboo: "healthy" },
       { text: "What happens in the family stays in the family. That rule runs deep.", taboo: "trapos" },
       { text: "You don't have language for them. Nobody ever gave you the words.", taboo: "deso" },
       { text: "Naming them out loud makes them real in a way that feels dangerous.", taboo: "bajale" },
@@ -625,6 +628,7 @@ const questions = [
     sub: "Your tia already knows the answer. Do you?",
     options: [
       { text: "It's getting quieter. You're doing the work and it's starting to show up in your life.", taboo: "healthy" },
+      { text: "Mostly my own voice, honestly. It took work to get here but the inherited voices are background noise now, not the lead.", taboo: "healthy" },
       { text: "'Que van a pensar?' What will they think? The question that never takes a day off.", taboo: "quediran" },
       { text: "'De eso no se habla.' We don't talk about that. File it away and move on.", taboo: "deso" },
       { text: "'Los trapos sucios se lavan en casa.' Handle it yourself. In private. Always.", taboo: "trapos" },
@@ -762,10 +766,7 @@ function prevQuestion() {
 function calculateScores() {
   scores = { quediran:0, bajale:0, trapos:0, deso:0, lucha:0, madre:0 };
   questions.forEach((q, qi) => {
-    if (answers[qi] !== null) {
-      var t = q.options[answers[qi]].taboo;
-      if (t !== 'healthy') scores[t]++;
-    }
+    if (answers[qi] !== null) { var t = q.options[answers[qi]].taboo; if (t !== 'healthy') scores[t]++ };
   });
   primaryResult = Object.keys(scores).reduce((a,b) => scores[a] >= scores[b] ? a : b);
 }
@@ -774,32 +775,32 @@ function submitAndShowResults() {
   var name = document.getElementById('cap-name').value.trim();
   var email = document.getElementById('cap-email').value.trim();
 
-  // Always show results regardless of email
-  // Submit to Flodesk in background if email provided
   if (email) {
     var segmentMap = {
-      quediran: 'quiz-quediran',
-      bajale: 'quiz-bajale',
-      trapos: 'quiz-trapos',
-      deso: 'quiz-deso',
-      lucha: 'quiz-lucha',
-      madre: 'quiz-madre'
+      quediran: '69d07b5b4a086815315a42e1',
+      bajale: '69d07e86808a53aa46a4a2c7',
+      trapos: '69d07f512b1eab093cf9a6ab',
+      deso: '69d07ee576c57748dd1b22bc',
+      lucha: '69d07f16dfa5e57e528bf576',
+      madre: '69d07f5ca5aa26637485ea45'
     };
-    var segment = segmentMap[primaryResult] || 'quiz-taker';
-    try {
-      fetch('https://assets.flodesk.com/form-api/v1/embed/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          formId: '69d18ea9808a53aa46a4a7e4',
-          fields: { firstName: name, email: email },
-          segmentIds: [segment]
-        })
-      }).catch(function() {});
-    } catch(e) {}
+    var segment = segmentMap[primaryResult] || '69d07b5b4a086815315a42e1';
+    var apiKey = 'fd_key_af97bfc953a84af3ba3f6fa80f155630.W1rAx5Q8ddBTzWuMQQJK5ILbz9fqKaGIEB2OzmyduIAZuLwsaXkoSc4kSf8ZqPPdMu4IvpUHlQVHbJ2DfMrFwQVfZjjHRs4a6WTg6CtBnXoSBQCevoptRJhOVjd4lgw9S9mCS5SvzP8btSqfqY4IzC3ZsQOpmnCbeOdsnjPjYNs3tysWx7jUgB6EqHTScNpk';
+
+    fetch('https://api.flodesk.com/v1/subscribers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + btoa(apiKey + ':')
+      },
+      body: JSON.stringify({
+        email: email,
+        first_name: name,
+        segment_ids: [segment, '69d02cdbdfa5e57e528bf3e6']
+      })
+    }).catch(function() {});
   }
 
-  // Go straight to results - no confirm screen
   showResults();
 }
 
@@ -870,7 +871,7 @@ function retakeQuiz() {
 </html>
 
 <!-- Flodesk hidden form for email capture -->
-<div id="fd-form-69d18ea9808a53aa46a4a7e4" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;"></div>
+<div id="fd-form-69d02d0b5f0536d5951f03c1" style="display:none;position:absolute;"></div>
 <script>
   (function(w, d, t, h, s, n) {
     w.FlodeskObject = n;
@@ -894,7 +895,7 @@ function retakeQuiz() {
 </script>
 <script>
   window.fd('form', {
-    formId: '69d18ea9808a53aa46a4a7e4',
+    formId: '69d02d0b5f0536d5951f03c1',
     containerEl: '#fd-form-69d02d0b5f0536d5951f03c1'
   });
 </script>
