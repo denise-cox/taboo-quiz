@@ -458,7 +458,8 @@
   <!-- RESULTS SCREEN -->
   <div id="screen-results" class="screen" style="display:none;">
     <div class="result-hero">
-      <div class="result-eyebrow">Your primary taboo</div>
+      <div id="res-promise" style="font-size:17px; line-height:1.75; color:#72243E; font-style:italic; margin-bottom:1.5rem; padding:1.25rem; background:#fdf9f7; border-radius:12px; border-left:3px solid #D4537E;"></div>
+      <div class="result-eyebrow">And here's what's been keeping it frozen:</div>
       <div class="result-taboo-phrase" id="res-taboo-phrase"></div>
       <div class="result-name" id="res-name"></div>
       <div class="result-desc" id="res-desc"></div>
@@ -467,6 +468,11 @@
     <div class="result-section">
       <h3>How this shows up in your life</h3>
       <div id="res-patterns"></div>
+    </div>
+
+    <div class="result-section">
+      <h3>What becomes possible</h3>
+      <div id="res-possible"></div>
     </div>
 
     <div class="result-section">
@@ -641,46 +647,59 @@ const taboos = {
   quediran: {
     phrase: "¿Qué dirán?",
     name: "The fear of what others will say",
-    desc: "You've been making decisions with an invisible audience in your head for so long, you don't even notice anymore. Their imagined judgment shapes your choices before you're aware you're making one.",
-    patterns: ["You edit yourself in meetings before you even speak", "Other people's opinions feel more real than your own", "Success feels dangerous, it raises the stakes of being watched"],
+    promise: "Here's what's been waiting for you: every decision you've been postponing until the audience in your head gives you permission. They were never going to. The life you've been waiting to start is already yours.",
+    desc: "Ah. The invisible audience. They have excellent seats and terrible opinions. You've been making decisions with them in your head for so long, you don't even notice anymore. Their imagined judgment shapes your choices before you're aware you're making one.",
+    patterns: ["You edit yourself in meetings before you even speak", "Other people's opinions feel more real than your own", "Success feels dangerous because it raises the stakes of being watched"],
+    possible: ["Decisions that come from your own knowing, not the imagined crowd", "The ability to act before the audience has weighed in", "A life that feels like yours, not a performance for theirs"],
     next: "Start noticing the question 'what will they think?' before you act on it. You don't need to stop asking it. You need to hear it, name it, and then ask: what do I actually think? Chapter 1 of What Will They Say? is your next step."
   },
   bajale: {
     phrase: "¡Bájale dos rayitas!",
     name: "The compulsion to shrink",
-    desc: "You were told, directly or indirectly, that your intensity, your ambition, your presence was too much. So you learned to make yourself smaller. Now it's automatic, and it's costing you.",
+    promise: "Here's what's been waiting for you: the version of yourself that was never too much. She didn't go anywhere. She just got very quiet.",
+    desc: "Someone actually said this to you like it was helpful. It was not. You were told, directly or indirectly, that your intensity, your ambition, your presence was too much. So you learned to make yourself smaller. Now it's automatic, and it's costing you.",
     patterns: ["You credit the team when the win was yours", "You preface your opinions with apologies", "You feel guilty when you take up space or make a big claim"],
+    possible: ["Claiming wins without distributing the credit first", "Opinions delivered without a softener", "Taking up exactly as much space as you need"],
     next: "The work isn't to become louder. It's to stop apologizing for your size. Practice claiming one thing per week, one win, one opinion, one boundary, without softening it first. Chapter 4 of What Will They Say? breaks down exactly why this rule was installed, and how to uninstall it."
   },
   trapos: {
     phrase: "Los trapos sucios se lavan en casa",
     name: "The code of private suffering",
-    desc: "Loyalty meant silence. Strength meant handling it alone. You learned early that sharing what's wrong, at work, in your family, inside yourself, was a form of betrayal. So you've been carrying it all.",
+    promise: "Here's what's been waiting for you: the relief of putting it down. You've been carrying it alone for so long you've forgotten what your hands feel like empty.",
+    desc: "The original silent sufferer. That's you. Loyalty meant silence. Strength meant handling it alone. You learned early that sharing what's wrong was a form of betrayal. So you've been carrying it all.",
     patterns: ["You never take problems to HR or leadership, ever", "You minimize your struggles, even with people you trust", "You feel relief when things look fine from the outside, even when they aren't"],
+    possible: ["The relief of telling one true thing to one safe person", "Strength that doesn't require you to disappear inside it", "Relationships deep enough to hold the parts you've been hiding"],
     next: "The silence was a survival strategy, honor it for what it was. And then start questioning one small thing: who would it actually hurt if you told the truth about this? Chapter 1 of What Will They Say? starts here."
   },
   deso: {
     phrase: "De eso no se habla",
     name: "The unspoken rule of forbidden topics",
-    desc: "Some things were simply not discussed. Mental health, trauma, dysfunction, desire, there was an entire map of forbidden territory in your house. You learned to navigate around it so well that now you can barely find the words for what's inside you.",
+    promise: "Here's what's been waiting for you: language. Words for the things that were never supposed to be spoken. They exist. You just weren't given them yet.",
+    desc: "There are whole rooms in your inner world with the lights off and the door closed. Some things were simply not discussed. Mental health, trauma, dysfunction, desire. You learned to navigate around them so well that now there are things living inside you that have never had words.",
     patterns: ["You have feelings you can't name because there were no words for them growing up", "Therapy or emotional conversations feel almost physically uncomfortable", "You change the subject instinctively when things get too real"],
+    possible: ["Language for the things that were never allowed to be named", "Rooms inside you that have light in them again", "Conversations that go all the way to the truth"],
     next: "The first act of freedom is just finding language. Name one thing this week, out loud, to someone safe, that has never been named before. Chapter 2 of What Will They Say? is your companion for this."
   },
   lucha: {
-    phrase: "Beyond la lucha",
-    name: "The belief that struggle is the only proof of worth",
-    desc: "Your people suffered to give you what you have. So ease feels dangerous, like betrayal, like you haven't paid enough yet. You grind not just because you have to, but because resting feels morally wrong.",
+    phrase: "La lucha sigue",
+    name: "The glorification of struggle",
+    promise: "Here's what's been waiting for you: ease. Not as a reward for suffering enough. Just as something you're allowed to have.",
+    desc: "Rest? In this familia? In this economy? Your people suffered to give you what you have. So ease feels dangerous, like betrayal, like you haven't paid enough yet. You grind not just because you have to, but because resting feels morally wrong.",
     patterns: ["You feel guilty when things go well without a fight", "You use how hard something was as evidence you deserved it", "Rest, joy, and ease trigger shame more than satisfaction"],
+    possible: ["A win that doesn't require a story about how hard it was", "Rest that doesn't come with a side of guilt", "Ease that feels like an inheritance, not a betrayal"],
     next: "Your inheritance is the sacrifice. It is not the suffering. Chapter 9 of What Will They Say? is specifically about dismantling the belief that struggle is the price of belonging."
   },
   madre: {
     phrase: "Don't dishonor your mother",
     name: "The weight of unconditional loyalty",
-    desc: "Your love for your family, especially your mother, has been one of your greatest strengths. And one of your most invisible constraints. You've learned to read the room, keep the peace, and never do anything that reflects badly on where you came from.",
+    promise: "Here's what's been waiting for you: a life that is fully yours. Not instead of love. Alongside it.",
+    desc: "You have her eyes, her cooking, and apparently her veto power over your major life decisions. She doesn't even know she has it. Your love for your family has been one of your greatest strengths. And one of your most invisible constraints.",
     patterns: ["You loop family opinion into major decisions automatically", "Disappointing her feels like an identity crisis, not just a disagreement", "You confuse loyalty with self-erasure"],
+    possible: ["Decisions made from your own center, then shared with love", "A relationship with your mother that doesn't require you to disappear", "Loyalty that goes both ways, including toward yourself"],
     next: "Loving your mother and building your own life are not mutually exclusive, even when it feels that way. Chapter 6 of What Will They Say? is the one readers call the hardest to read, and the most necessary."
   }
 };
+
 
 const tabooOrder = ["quediran","bajale","trapos","deso","lucha","madre"];
 const tabooShortNames = {
@@ -797,6 +816,7 @@ function submitAndShowResults() {
 function showResults() {
   show('screen-results');
   const t = taboos[primaryResult];
+  document.getElementById('res-promise').textContent = t.promise;
   document.getElementById('res-taboo-phrase').textContent = t.phrase;
   document.getElementById('res-name').textContent = t.name;
   document.getElementById('res-desc').textContent = t.desc;
@@ -810,6 +830,17 @@ function showResults() {
     d.textContent = p;
     patternsDiv.appendChild(d);
   });
+
+  const possibleDiv = document.getElementById('res-possible');
+  if (possibleDiv) {
+    possibleDiv.innerHTML = '';
+    t.possible.forEach(p => {
+      const d = document.createElement('div');
+      d.className = 'pattern-card';
+      d.textContent = p;
+      possibleDiv.appendChild(d);
+    });
+  }
 
   const barsDiv = document.getElementById('res-score-bars');
   barsDiv.innerHTML = '';
