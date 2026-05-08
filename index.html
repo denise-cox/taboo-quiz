@@ -411,14 +411,14 @@
   <div id="screen-intro" class="screen active" style="display:block;">
     <div class="badge">Free quiz</div>
     <h1>Your dreams didn’t die. This quiz finds out what buried them.</h1>
-    <p class="intro-sub">Something in you has been waiting.<br><br>There was a promise you made to yourself once, before anyone told you who to be, what to want, how much space you were allowed to take up. Maybe it was a career. A creative life. A version of yourself that felt fully real. A relationship that didn't require you to disappear.<br><br>You didn't forget it. It went somewhere cold and quiet. And it's been waiting there ever since.<br><br>The cultural rules you grew up with were meant to protect you. This quiz names the ones that are now getting in the way.<br><br>10 questions. 5 minutes. Enter through hope.</p>
+    <p class="intro-sub">Something in you has been waiting.<br><br>There was a promise you made to yourself once, before anyone told you who to be, what to want, how much space you were allowed to take up. Maybe it was a career. A creative life. A version of yourself that felt fully real. A relationship that didn’t require you to disappear.<br><br>You didn’t forget it. It went somewhere cold and quiet. And it’s been waiting there ever since.<br><br>The cultural rules you grew up with were meant to protect you. This quiz names the ones that are now getting in the way.<br><br>10 questions. 5 minutes. Enter through hope.</p>
     <ul class="intro-list">
       <li><span class="arrow">→</span> 10 questions, 5 minutes</li>
       <li><span class="arrow">→</span> Rooted in Denise Soler Cox’s book <em>What Will They Say?</em> (Simon &amp; Schuster, 2026)</li>
       <li><span class="arrow">→</span> Your result includes how this taboo shows up in your life and what to do next</li>
-      <li><span class="arrow">→</span> Designed for first-gen Latinas ready to stop being managed by rules they didn't choose</li>
+      <li><span class="arrow">→</span> Designed for first-gen Latinas ready to stop being managed by rules they didn’t choose</li>
     </ul>
-    <button class="btn-primary" onclick="startQuiz()">Find out what's been keeping it frozen →</button>
+    <button class="btn-primary" onclick="startQuiz()">Find out what’s been keeping it frozen →</button>
   </div>
 
   <!-- QUIZ SCREEN -->
@@ -435,7 +435,7 @@
   </div>
 
   <!-- CAPTURE SCREEN -->
-  <div<div id="screen-capture" class="screen" style="display:none;">
+  <div id="screen-capture" class="screen" style="display:none;">
     <div class="q-label">Almost there</div>
     <p class="capture-title">Where should we send your full taboo profile?</p>
     <p class="capture-sub">Enter your name and email to unlock your complete results. You’ll also get a copy of the introduction to <em>What Will They Say?</em> sent straight to your inbox, the chapter that started it all.</p>
@@ -443,23 +443,16 @@
     <input type="email" id="cap-email" placeholder="Your email address" />
     <button class="btn-primary" onclick="submitAndShowResults()">Show my results →</button>
     <p class="privacy-note">No spam. Ever. Unsubscribe anytime.</p>
-  </div>
-
-  <!-- EMAIL CONFIRM SCREEN -->
-  <div id="screen-confirm" class="screen" style="display:none;">
-    <div class="result-hero" style="text-align:center; margin-bottom:1.5rem;">
-      <div class="result-eyebrow">You’re in</div>
-      <div class="result-name" style="font-size:22px; margin-bottom:0.75rem;">Check your inbox</div>
-      <div class="result-desc">We just sent your full taboo profile plus the introduction to <em>What Will They Say?</em> to your email. If you don’t see it within a few minutes, check your spam folder and move it to your inbox so you don’t miss a thing.</div>
+    <div style="background:#FBEAF0; border-radius:10px; padding:12px 16px; margin-top:14px; font-size:13px; color:#72243E; line-height:1.6; text-align:center;">
+      📬 <strong>Check your inbox!</strong> If you don’t see our email within a few minutes, check your spam folder and mark it as <strong>not spam</strong> so you don’t miss a thing.
     </div>
-    <button class="btn-primary" onclick="showResults()">See my results now →</button>
   </div>
 
   <!-- RESULTS SCREEN -->
   <div id="screen-results" class="screen" style="display:none;">
     <div class="result-hero">
-      <div id="res-promise" style="font-size:17px; line-height:1.75; color:#72243E; font-style:italic; margin-bottom:1.5rem; padding:1.25rem; background:#fdf9f7; border-radius:12px; border-left:3px solid #D4537E;"></div>
-      <div class="result-eyebrow">And here's what's been keeping it frozen:</div>
+      <div id="res-promise" style="font-size:17px; line-height:1.75; color:#72243E; font-style:italic; margin-bottom:1.5rem; padding:1.25rem; background:#fdf9f7; border-radius:12px; border-left:3px solid #D4537E; display:none;"></div>
+      <div class="result-eyebrow">And here’s what’s been keeping it frozen:</div>
       <div class="result-taboo-phrase" id="res-taboo-phrase"></div>
       <div class="result-name" id="res-name"></div>
       <div class="result-desc" id="res-desc"></div>
@@ -481,14 +474,14 @@
     </div>
 
     <div class="all-ten-callout">
-      This quiz reveals your primary taboo, but there are <em>10 cultural rules</em> that may be running your life, your leadership, and your relationships. All ten are named, traced, and broken open in <em>What Will They Say?</em>, and some of the ones you didn't score highest on might surprise you most.
+      You found the name for what’s been keeping your promise frozen. That’s the first step. The book shows you the way back.
     </div>
 
     <div class="book-callout">
       <div class="book-cover">What Will They Say?</div>
       <div class="book-text">
-        <h4>Read all 10 taboos in the book</h4>
-        <p>Denise Soler Cox’s debut, <em>What Will They Say?</em> (Simon &amp; Schuster, 2026), names all ten inherited cultural rules and traces exactly how they show up in your career, your relationships, and your body.</p>
+        <h4>What Will They Say? is your map home.</h4>
+        <p>Denise Soler Cox’s debut (Simon &amp; Schuster, 2026) traces exactly how these rules got installed, and shows you the way back.</p>
       </div>
     </div>
 
@@ -505,10 +498,17 @@
 
     <div style="background:#FBEAF0; border-radius:14px; padding:1.5rem; text-align:center; border:1px solid #f5d0df; margin-bottom:1.25rem;">
       <div style="font-size:11px; color:#993556; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-bottom:0.5rem;">Pre-order the book</div>
-      <div style="font-size:18px; font-weight:600; color:#3d0f1e; line-height:1.3; margin-bottom:0.75rem;">Ready to break free from all 10 taboos?</div>
-      <div style="font-size:14px; color:#72243E; line-height:1.7; margin-bottom:1.25rem;">You just found your primary one. The other nine are waiting in <em>What Will They Say?</em>, and some of them will surprise you even more.</div>
+      <div style="font-size:18px; font-weight:600; color:#3d0f1e; line-height:1.3; margin-bottom:0.75rem;">You found the name. The book shows you the way back.</div>
+      <div style="font-size:14px; color:#72243E; line-height:1.7; margin-bottom:1.25rem;">Your promise has been waiting. <em>What Will They Say?</em> gives you the full map to go back for it.</div>
       <a href="https://www.simonandschuster.com/books/What-Will-They-Say/Denise-Soler-Cox/9781668082966" target="_blank" style="display:block; background:#D4537E; color:white; border-radius:12px; padding:15px 28px; font-size:16px; font-weight:600; text-decoration:none; margin-bottom:8px;">Pre-order What Will They Say? →</a>
       <p style="font-size:12px; color:#993556;">Simon &amp; Schuster · August 18, 2026</p>
+    </div>
+
+    <div style="background:#fdf9f7; border:1px solid #f0e8ec; border-radius:12px; padding:1.25rem; text-align:center; margin-bottom:1.25rem;">
+      <div style="font-size:11px; color:#993556; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-bottom:0.5rem;">Follow along</div>
+      <div style="font-size:17px; font-weight:600; color:#1a1a1a; margin-bottom:0.75rem;">The book doesn’t come out until August 18. Your liberation starts now.</div>
+      <div style="font-size:14px; color:#555; line-height:1.7; margin-bottom:1rem;">Every week between now and launch, I’m breaking down these taboos on Instagram. Follow along so you don’t miss a thing.</div>
+      <a href="https://www.instagram.com/denisesolercox" target="_blank" style="display:block; background:#D4537E; color:white; border-radius:12px; padding:14px 28px; font-size:15px; font-weight:600; text-decoration:none; margin-bottom:8px;">Follow @denisesolercox on Instagram →</a>
     </div>
 
     <div style="background:#fdf9f7; border:1px solid #f0e8ec; border-radius:12px; padding:1.25rem; text-align:center;">
@@ -816,7 +816,7 @@ function submitAndShowResults() {
 function showResults() {
   show('screen-results');
   const t = taboos[primaryResult];
-  document.getElementById('res-promise').textContent = t.promise;
+  var promiseEl = document.getElementById('res-promise'); promiseEl.textContent = t.promise; promiseEl.style.display = 'block';
   document.getElementById('res-taboo-phrase').textContent = t.phrase;
   document.getElementById('res-name').textContent = t.name;
   document.getElementById('res-desc').textContent = t.desc;
