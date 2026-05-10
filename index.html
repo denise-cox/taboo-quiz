@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Dreams Didn’t Die | Denise Soler Cox</title>
+<title>Which Latina Daughter Are You Becoming? | Denise Soler Cox</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -410,7 +410,7 @@
   <!-- INTRO SCREEN -->
   <div id="screen-intro" class="screen active" style="display:block;">
     <div class="badge">Free quiz</div>
-    <h1>Your dreams didn’t die. This quiz finds out what buried them.</h1>
+    <h1>Which Latina Daughter Are You Becoming?</h1>
     <p class="intro-sub">Something in you has been waiting.<br><br>There was a promise you made to yourself once, before anyone told you who to be, what to want, how much space you were allowed to take up. Maybe it was a career. A creative life. A version of yourself that felt fully real. A relationship that didn’t require you to disappear.<br><br>You didn’t forget it. It went somewhere cold and quiet. And it’s been waiting there ever since.<br><br>The cultural rules you grew up with were meant to protect you. This quiz names the ones that are now getting in the way.<br><br>10 questions. 5 minutes. Enter through hope.</p>
     <ul class="intro-list">
       <li><span class="arrow">→</span> 10 questions, 5 minutes</li>
@@ -451,11 +451,12 @@
   <!-- RESULTS SCREEN -->
   <div id="screen-results" class="screen" style="display:none;">
     <div class="result-hero">
-      <div id="res-promise" style="font-size:17px; line-height:1.75; color:#72243E; font-style:italic; margin-bottom:1.5rem; padding:1.25rem; background:#fdf9f7; border-radius:12px; border-left:3px solid #D4537E; display:none; min-height:0;"></div>
-      <div class="result-eyebrow">And here’s what’s been keeping it frozen:</div>
-      <div class="result-taboo-phrase" id="res-taboo-phrase"></div>
-      <div class="result-name" id="res-name"></div>
+      <div id="res-promise" style="font-size:17px; line-height:1.75; color:#72243E; font-style:italic; margin-bottom:1.5rem; padding:1.25rem; background:#fdf9f7; border-radius:12px; border-left:3px solid #D4537E; display:none;"></div>
+      <div class="result-eyebrow">You are</div>
+      <div class="result-taboo-phrase" id="res-taboo-phrase" style="font-size:24px; line-height:1.3; margin-bottom:0.5rem;"></div>
+      <div id="res-taboo-label" style="font-size:13px; color:#993556; font-style:italic; margin-bottom:1.25rem; opacity:0.8;"></div>
       <div class="result-desc" id="res-desc"></div>
+    </div>
     </div>
 
     <div class="result-section">
@@ -645,58 +646,64 @@ const questions = [
 
 const taboos = {
   quediran: {
-    phrase: "¿Qué dirán?",
+    phrase: "\u00bfQu\u00e9 dir\u00e1n?",
     name: "The fear of what others will say",
-    promise: "Here's what's been waiting for you: every decision you've been postponing until the audience in your head gives you permission. They were never going to. The life you've been waiting to start is already yours.",
-    desc: "Ah. The invisible audience. They have excellent seats and terrible opinions. You've been making decisions with them in your head for so long, you don't even notice anymore. Their imagined judgment shapes your choices before you're aware you're making one.",
-    patterns: ["You edit yourself in meetings before you even speak", "Other people's opinions feel more real than your own", "Success feels dangerous because it raises the stakes of being watched"],
+    daughter: "The Daughter Who Is Learning to Trust Her Own Voice",
+    promise: "Here\u2019s what\u2019s been waiting for you: every decision you\u2019ve been postponing until the audience in your head gives you permission. They were never going to. The life you\u2019ve been waiting to start is already yours.",
+    desc: "\u00bfQu\u00e9 dir\u00e1n?\u201d What will they say? You heard it so many times it became your own internal voice. You stopped needing anyone to say it out loud. But that voice was never yours to begin with \u2014 and you\u2019re ready to find out what you actually think.",
+    patterns: ["You edit yourself in meetings before you even speak", "Other people\u2019s opinions feel more real than your own", "Success feels dangerous because it raises the stakes of being watched"],
     possible: ["Decisions that come from your own knowing, not the imagined crowd", "The ability to act before the audience has weighed in", "A life that feels like yours, not a performance for theirs"],
-    next: "Start noticing the question 'what will they think?' before you act on it. You don't need to stop asking it. You need to hear it, name it, and then ask: what do I actually think? Chapter 1 of What Will They Say? is your next step."
+    next: "Start noticing the question \u2018what will they think?\u2019 before you act on it. You don\u2019t need to stop asking it. You need to hear it, name it, and then ask: what do I actually think? Chapter 1 of What Will They Say? is your next step."
   },
   bajale: {
-    phrase: "¡Bájale dos rayitas!",
+    phrase: "\u00a1B\u00e1jale dos rayitas!",
     name: "The compulsion to shrink",
-    promise: "Here's what's been waiting for you: the version of yourself that was never too much. She didn't go anywhere. She just got very quiet.",
-    desc: "Someone actually said this to you like it was helpful. It was not. You were told, directly or indirectly, that your intensity, your ambition, your presence was too much. So you learned to make yourself smaller. Now it's automatic, and it's costing you.",
+    daughter: "The Daughter Who Is Done Making Herself Smaller",
+    promise: "Here\u2019s what\u2019s been waiting for you: the version of yourself that was never too much. She didn\u2019t go anywhere. She just got very quiet.",
+    desc: "\u201cB\u00e1jale dos rayitas.\u201d Turn it down. Someone said that to you like it was helpful. You were probably seven. You never forgot it. But you\u2019re done shrinking for rooms that need everything you\u2019ve got. You\u2019re ready to take up all the space.",
     patterns: ["You credit the team when the win was yours", "You preface your opinions with apologies", "You feel guilty when you take up space or make a big claim"],
     possible: ["Claiming wins without distributing the credit first", "Opinions delivered without a softener", "Taking up exactly as much space as you need"],
-    next: "The work isn't to become louder. It's to stop apologizing for your size. Practice claiming one thing per week, one win, one opinion, one boundary, without softening it first. Chapter 4 of What Will They Say? breaks down exactly why this rule was installed, and how to uninstall it."
+    next: "The work isn\u2019t to become louder. It\u2019s to stop apologizing for your size. Practice claiming one thing per week \u2014 one win, one opinion, one boundary \u2014 without softening it first. Chapter 4 of What Will They Say? breaks down exactly why this rule was installed, and how to uninstall it."
   },
   trapos: {
     phrase: "Los trapos sucios se lavan en casa",
     name: "The code of private suffering",
-    promise: "Here's what's been waiting for you: the relief of putting it down. You've been carrying it alone for so long you've forgotten what your hands feel like empty.",
-    desc: "The original silent sufferer. That's you. Loyalty meant silence. Strength meant handling it alone. You learned early that sharing what's wrong was a form of betrayal. So you've been carrying it all.",
-    patterns: ["You never take problems to HR or leadership, ever", "You minimize your struggles, even with people you trust", "You feel relief when things look fine from the outside, even when they aren't"],
-    possible: ["The relief of telling one true thing to one safe person", "Strength that doesn't require you to disappear inside it", "Relationships deep enough to hold the parts you've been hiding"],
-    next: "The silence was a survival strategy, honor it for what it was. And then start questioning one small thing: who would it actually hurt if you told the truth about this? Chapter 1 of What Will They Say? starts here."
+    daughter: "The Daughter Who Is Putting Down What Was Never Hers to Carry",
+    promise: "Here\u2019s what\u2019s been waiting for you: the relief of putting it down. You\u2019ve been carrying it alone for so long you\u2019ve forgotten what your hands feel like empty.",
+    desc: "\u201cLos trapos sucios se lavan en casa.\u201d The dirty laundry stays home. You learned early that suffering was private business. You\u2019ve been keeping that appointment ever since. But it was never yours to carry alone \u2014 and you\u2019re ready to put it down.",
+    patterns: ["You never take problems to HR or leadership, ever", "You minimize your struggles, even with people you trust", "You feel relief when things look fine from the outside, even when they aren\u2019t"],
+    possible: ["The relief of telling one true thing to one safe person", "Strength that doesn\u2019t require you to disappear inside it", "Relationships deep enough to hold the parts you\u2019ve been hiding"],
+    next: "The silence was a survival strategy \u2014 honor it for what it was. And then start questioning one small thing: who would it actually hurt if you told the truth about this? Chapter 1 of What Will They Say? starts here."
   },
   deso: {
     phrase: "De eso no se habla",
     name: "The unspoken rule of forbidden topics",
-    promise: "Here's what's been waiting for you: language. Words for the things that were never supposed to be spoken. They exist. You just weren't given them yet.",
-    desc: "There are whole rooms in your inner world with the lights off and the door closed. Some things were simply not discussed. Mental health, trauma, dysfunction, desire. You learned to navigate around them so well that now there are things living inside you that have never had words.",
-    patterns: ["You have feelings you can't name because there were no words for them growing up", "Therapy or emotional conversations feel almost physically uncomfortable", "You change the subject instinctively when things get too real"],
+    daughter: "The Daughter Who Is Discovering Her Truth",
+    promise: "Here\u2019s what\u2019s been waiting for you: language. Words for the things that were never supposed to be spoken. They exist. You just weren\u2019t given them yet.",
+    desc: "\u201cDe eso no se habla.\u201d We don\u2019t talk about that. The rule was never spoken out loud. It didn\u2019t need to be. You learned to navigate around the silence so well that some things inside you still don\u2019t have words. But you\u2019re ready to find them.",
+    patterns: ["You have feelings you can\u2019t name because there were no words for them growing up", "Therapy or emotional conversations feel almost physically uncomfortable", "You change the subject instinctively when things get too real"],
     possible: ["Language for the things that were never allowed to be named", "Rooms inside you that have light in them again", "Conversations that go all the way to the truth"],
-    next: "The first act of freedom is just finding language. Name one thing this week, out loud, to someone safe, that has never been named before. Chapter 2 of What Will They Say? is your companion for this."
+    next: "The first act of freedom is just finding language. Name one thing this week \u2014 out loud, to someone safe \u2014 that has never been named before. Chapter 2 of What Will They Say? is your companion for this."
   },
   lucha: {
     phrase: "La lucha sigue",
     name: "The glorification of struggle",
-    promise: "Here's what's been waiting for you: ease. Not because you've suffered enough. Just as something you're literally allowed to have.",
-    desc: "Rest? In this familia? In this economy? Your people suffered to give you what you have. So ease feels dangerous, like betrayal, like you haven't paid enough yet. You grind not just because you have to, but because resting feels morally wrong.",
+    daughter: "The Daughter Who Is Choosing Ease",
+    promise: "Here\u2019s what\u2019s been waiting for you: ease. Not because you\u2019ve suffered enough. Just as something you\u2019re literally allowed to have.",
+    desc: "\u201cLa lucha sigue.\u201d The struggle continues. You inherited that belief so deeply it became the price of everything good. But nobody told you that you could decide when yours was over. It is now. Because you\u2019re ready.",
     patterns: ["You feel guilty when things go well without a fight", "You use how hard something was as evidence you deserved it", "Rest, joy, and ease trigger shame more than satisfaction"],
-    possible: ["A win that doesn't require a story about how hard it was", "Rest that doesn't come with a side of guilt", "Ease that feels like an inheritance, not a betrayal"],
+    possible: ["A win that doesn\u2019t require a story about how hard it was", "Rest that doesn\u2019t come with a side of guilt", "Ease that feels like an inheritance, not a betrayal"],
     next: "Your inheritance is the sacrifice. It is not the suffering. Chapter 9 of What Will They Say? is specifically about dismantling the belief that struggle is the price of belonging."
   },
   madre: {
-    phrase: "Don't dishonor your mother",
+    phrase: "Don\u2019t dishonor your mother",
     name: "The weight of unconditional loyalty",
-    promise: "Here's what's been waiting for you: a life that is fully yours. Not instead of love. Alongside it.",
-    desc: "You have her eyes, her cooking, and apparently her veto power over your major life decisions. She doesn't even know she has it. Your love for your family has been one of your greatest strengths. And one of your most invisible constraints.",
+    daughter: "The Daughter Who Is Learning to Choose Herself",
+    promise: "Here\u2019s what\u2019s been waiting for you: a life that is fully yours. Not instead of love. Alongside it.",
+    desc: "You didn\u2019t get a memo about this rule. You absorbed it \u2014 from her posture, her sacrifices, the way she never chose herself first. You\u2019ve been honoring her by carrying what she carried. But choosing yourself isn\u2019t dishonoring her. It\u2019s finishing what she started. And you\u2019re ready.",
     patterns: ["You loop family opinion into major decisions automatically", "Disappointing her feels like an identity crisis, not just a disagreement", "You confuse loyalty with self-erasure"],
-    possible: ["Decisions made from your own center, then shared with love", "A relationship with your mother that doesn't require you to disappear", "Loyalty that goes both ways, including toward yourself"],
-    next: "Loving your mother and building your own life are not mutually exclusive, even when it feels that way. Chapter 6 of What Will They Say? is the one readers call the hardest to read, and the most necessary."
+    possible: ["Decisions made from your own center, then shared with love", "A relationship with your mother that doesn\u2019t require you to disappear", "Loyalty that goes both ways, including toward yourself"],
+    next: "Loving your mother and building your own life are not mutually exclusive \u2014 even when it feels that way. Chapter 6 of What Will They Say? is the one readers call the hardest to read, and the most necessary."
   }
 };
 
@@ -817,8 +824,9 @@ function showResults() {
   show('screen-results');
   const t = taboos[primaryResult];
   var promiseEl = document.getElementById('res-promise'); promiseEl.textContent = t.promise; promiseEl.style.display = 'block';
-  document.getElementById('res-taboo-phrase').textContent = t.phrase;
-  document.getElementById('res-name').textContent = t.name;
+  document.getElementById('res-taboo-phrase').textContent = t.daughter;
+  document.getElementById('res-taboo-label').textContent = t.phrase + ' — ' + t.name;
+  // name now shown via taboo label
   document.getElementById('res-desc').textContent = t.desc;
   document.getElementById('res-next').textContent = t.next;
 
@@ -872,7 +880,7 @@ function shareQuiz() {
 
 function shareResult() {
   const t = taboos[primaryResult];
-  const text = `I just took the "Which Cultural Taboo Is Running Your Life?" quiz by @denisesolercox\n\nMy result: ${t.phrase}, ${t.name}\n\nThere are 10 cultural taboos in the book. I just found my primary one.\n\nTake the quiz: denisesolercox.com`;
+  const text = `I am ${t.daughter}\n\nWhich Latina daughter are you becoming? Take the free quiz.\ndenisesolercox.com/tabooquiz`;
   if (navigator.share) {
     navigator.share({ text });
   } else {
