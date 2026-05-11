@@ -421,8 +421,6 @@
     <button class="btn-primary" onclick="startQuiz()">Find out what’s been keeping it frozen →</button>
   </div>
 
-  </div>
-
   <!-- QUIZ SCREEN -->
   <div id="screen-quiz" class="screen" style="display:none;">
     <div class="progress-bar-bg">
@@ -439,8 +437,8 @@
   <!-- CAPTURE SCREEN -->
   <div id="screen-capture" class="screen" style="display:none;">
     <div class="q-label">Almost there</div>
-    <p class="capture-title">Where should we send your full taboo profile?</p>
-    <p class="capture-sub">Enter your name and email to unlock your complete results. You’ll also get a copy of the introduction to <em>What Will They Say?</em> sent straight to your inbox, the chapter that started it all.</p>
+    <p class="capture-title">Where should we send your full profile?</p>
+    <p class="capture-sub">Enter your name and email to unlock your complete results.</p>
     <input type="text" id="cap-name" placeholder="Your first name" />
     <input type="email" id="cap-email" placeholder="Your email address" />
     <button class="btn-primary" onclick="submitAndShowResults()">Show my results →</button>
@@ -452,13 +450,13 @@
 
   <!-- RESULTS SCREEN -->
   <div id="screen-results" class="screen" style="display:none;">
+
     <div class="result-hero">
       <div id="res-promise" style="font-size:17px; line-height:1.75; color:#72243E; font-style:italic; margin-bottom:1.5rem; padding:1.25rem; background:#fdf9f7; border-radius:12px; border-left:3px solid #D4537E; display:none;"></div>
       <div class="result-eyebrow">You are</div>
       <div class="result-taboo-phrase" id="res-taboo-phrase" style="font-size:24px; line-height:1.3; margin-bottom:0.5rem;"></div>
       <div id="res-taboo-label" style="font-size:13px; color:#993556; font-style:italic; margin-bottom:1.25rem; opacity:0.8;"></div>
       <div class="result-desc" id="res-desc"></div>
-    </div>
     </div>
 
     <div class="result-section">
@@ -472,7 +470,7 @@
     </div>
 
     <div class="result-section">
-      <h3>Your full taboo profile</h3>
+      <h3>Your full becoming profile</h3>
       <div id="res-score-bars"></div>
     </div>
 
@@ -484,7 +482,7 @@
       <div class="book-cover">What Will They Say?</div>
       <div class="book-text">
         <h4>What Will They Say? is the map back to yourself.</h4>
-        <p>Denise Soler Cox’s debut (Simon &amp; Schuster, 2026) shows you exactly how these rules got installed — and how to finally live by ones you actually chose.</p>
+        <p>Denise Soler Cox’s debut (Simon &amp; Schuster, 2026) shows you exactly how these rules got installed, and how to finally live by ones you actually chose.</p>
       </div>
     </div>
 
@@ -509,15 +507,16 @@
 
     <div style="background:#fdf9f7; border:1px solid #f0e8ec; border-radius:12px; padding:1.25rem; text-align:center; margin-bottom:1.25rem;">
       <div style="font-size:11px; color:#993556; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-bottom:0.5rem;">Follow along</div>
-      <div style="font-size:17px; font-weight:600; color:#1a1a1a; margin-bottom:0.75rem;">The book doesn’t come out until August 18. Your liberation starts now.</div>
-      <div style="font-size:14px; color:#555; line-height:1.7; margin-bottom:1rem;">Every week between now and launch, I’m breaking down these taboos on Instagram. Follow along so you don’t miss a thing.</div>
+      <div style="font-size:17px; font-weight:600; color:#1a1a1a; margin-bottom:0.75rem;">The book doesn’t come out until August 18. Your becoming starts now.</div>
+      <div style="font-size:14px; color:#555; line-height:1.7; margin-bottom:1rem;">Every week between now and launch, I’m writing about this journey on Instagram. Follow along so you don’t miss a thing.</div>
       <a href="https://www.instagram.com/denisesolercox" target="_blank" style="display:block; background:#D4537E; color:white; border-radius:12px; padding:14px 28px; font-size:15px; font-weight:600; text-decoration:none; margin-bottom:8px;">Follow @denisesolercox on Instagram →</a>
     </div>
 
     <div style="background:#fdf9f7; border:1px solid #f0e8ec; border-radius:12px; padding:1.25rem; text-align:center;">
-      <div style="font-size:14px; color:#555; line-height:1.6; margin-bottom:12px;">Know a Latina who needs to see this? Send her the quiz.</div>
+      <div style="font-size:14px; color:#555; line-height:1.6; margin-bottom:12px;">Know a Latina daughter who needs to see this? Send her the quiz.</div>
       <button class="btn-primary" onclick="shareQuiz()">Send the quiz to a friend</button>
     </div>
+
   </div>
 
 </div>
